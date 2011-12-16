@@ -1,6 +1,23 @@
-#Mac ds_store Daten
-.DS_Store
-#Java
-src/Server/Debug_Build/
+# Compiled source #
+###################
+*.com
 *.class
+*.dll
+*.exe
+*.o
+*.so
 
+# Target folders #
+#################
+
+
+# Logs and databases #
+######################
+*.log
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
