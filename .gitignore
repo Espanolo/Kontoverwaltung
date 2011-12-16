@@ -1,0 +1,6 @@
+#Mac ds_store Daten
+*.DS_STORE
+#Java
+src/Server/Debug_Build/
+*.class
+
