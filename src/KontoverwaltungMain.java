@@ -51,6 +51,19 @@ public class KontoverwaltungMain {
 		};
 		fileMenu.add(exitAction);
 		
+		JMenu customerMenu = new JMenu("Kunde");
+		menuBar.add(customerMenu);
+		customerMenu.add(new JMenuItem("Neuen Kunden erstellen"));
+		customerMenu.add(new JMenuItem("Alle Kunden anzeigen"));
+		customerMenu.add(new JMenuItem("Kunde bearbeiten"));
+		customerMenu.add(new JMenuItem("Kunde lšschen"));
+		
+		JMenu accoutMenu = new JMenu("Konto");
+		menuBar.add(accoutMenu);
+		accoutMenu.add(new JMenuItem("Neues Konto erstellen"));
+		accoutMenu.add(new JMenuItem("Alle Konten anzeigen"));
+		accoutMenu.add(new JMenuItem("Konto bearbeiten"));
+		accoutMenu.add(new JMenuItem("Konto lšschen"));
 		
 		JMenu helpMenu = new JMenu("Hilfe");
 		menuBar.add(helpMenu);
