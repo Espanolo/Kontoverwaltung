@@ -38,6 +38,7 @@ public class Kunde {
 	 * @author DMF
 	 */
 	public List kundenAnzeigen(){
-		return;
+		List kunden = null;
+		return kunden;
 	}
 }
