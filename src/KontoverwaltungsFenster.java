@@ -245,6 +245,7 @@ public class KontoverwaltungsFenster extends JFrame
 		lblPLZ.setBounds(150, 285, 150, 16);
 		lblOrt.setBounds(150, 315, 150, 16);
 		
+		//Labels zum Panel hinzufügen
 		panel.add(lblKundennummer);
 		panel.add(lblVorname);
 		panel.add(lblNachname);
@@ -252,6 +253,7 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(lblPLZ);
 		panel.add(lblOrt);
 		
+		//Separatoren für Oben und Unten 
 		JSeparator sepOben = new JSeparator();
 		JSeparator sepUnten = new JSeparator();
 		sepOben.setBackground(Color.BLACK);
@@ -322,12 +324,14 @@ public class KontoverwaltungsFenster extends JFrame
 		lblKontostand.setBounds(150, 255, 150, 16);
 		lblEur.setBounds(470, 255, 30, 16);
 		
+		//Labels zum Panel hinzufügen
 		panel.add(lblKundennummer);
 		panel.add(lblKontonummer);
 		panel.add(lblKontoart);
 		panel.add(lblKontostand);
 		panel.add(lblEur);
 		
+		//RadioButtons für die Auswahl erstellen, positionieren und hinzufügen
 		JRadioButton rdbtnGirokonto = new JRadioButton("Girokonto");
 		JRadioButton rdbtnSparkonto = new JRadioButton("Sparkonto");
 		
@@ -337,6 +341,7 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(rdbtnGirokonto);
 		panel.add(rdbtnSparkonto);
 		
+		//Separatoren für Oben und Unten 
 		JSeparator sepOben = new JSeparator();
 		JSeparator sepUnten = new JSeparator();
 		sepOben.setBackground(Color.BLACK);
@@ -348,11 +353,13 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(sepOben);
 		panel.add(sepUnten);
 		
+		//Kontoanlegen Button hinzufügen
 		JButton btnKontoAnlegen = new JButton("anlegen");
 		btnKontoAnlegen.setBounds(230, 400, 135, 30);
 		panel.add(btnKontoAnlegen);
 		
-		panel.repaint();
+		
+		//panel.repaint();
    }
 	
  }
