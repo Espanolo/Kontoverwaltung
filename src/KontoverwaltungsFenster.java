@@ -70,8 +70,7 @@ public class KontoverwaltungsFenster extends JFrame
 		newCustomer.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
-						
-						newCustomerPanel();
+						kundenAnlegenPanel();
 					}
 				}
 		);
@@ -119,7 +118,7 @@ public class KontoverwaltungsFenster extends JFrame
 		newAccount.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
-						//Funktionen fehlen
+						kontoAnlegenPanel();
 					}
 				}
 		);
@@ -177,21 +176,18 @@ public class KontoverwaltungsFenster extends JFrame
 		
 		
 	}
-   public void newCustomerPanel(){
-	   	
-	   /**
-		 * Logo laden
-		 * @author DMF
-		 */
+   public void kundenAnlegenPanel(){
+	   		
+	   	//Entfernt alle zuvor hinzugefügten Objekte vom Panel
+	    panel.removeAll();
+
+		//Logo laden
 		JLabel lblLogo = new JLabel();
 		lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
 		lblLogo.setBounds(200, 15, 215, 75);
 		panel.add(lblLogo);
-		
-		/**
-		 * Alle Labels und Textfelder erstellen
-		 * @author DMF
-		 */
+
+		//Alle Labels und Textfelder erstellen
 		JTextField txtKundennummer = new JTextField();
 	    JTextField txtVorname = new JTextField();
 	    JTextField txtNachname = new JTextField();
@@ -220,8 +216,6 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(txtPlz);
 		panel.add(txtOrt);
 		
-		
-
 		
 		JLabel lblKundennummer = new JLabel("Kundennummer");
 		JLabel lblVorname = new JLabel("Vorname");
@@ -272,6 +266,91 @@ public class KontoverwaltungsFenster extends JFrame
 		JButton btnKundenAnlegen = new JButton("anlegen");
 		btnKundenAnlegen.setBounds(230, 400, 135, 30);
 		panel.add(btnKundenAnlegen);
+		
+		panel.repaint();
+   }
+   
+   public void kontoAnlegenPanel(){
+	    
+	    //Entfernt alle zuvor hinzugefügten Objekte vom Panel
+	    panel.removeAll();
+	   
+		//Logo laden
+		JLabel lblLogo = new JLabel();
+		lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
+		lblLogo.setBounds(200, 15, 215, 75);
+		panel.add(lblLogo);
+
+		//Alle Labels und Textfelder erstellen
+		JTextField txtKundennummer = new JTextField();
+	    JTextField txtKontonummer = new JTextField();
+	    JTextField txtKontostand = new JTextField();
+	    
+	    txtKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		txtKontonummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		txtKontostand.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		
+		txtKundennummer.setBounds(320, 140, 150, 25);
+		txtKontonummer.setBounds(320, 170, 150, 25);
+		txtKontostand.setBounds(320, 250, 150, 25);
+		
+		panel.add(txtKundennummer);
+		panel.add(txtKontonummer);
+		panel.add(txtKontostand);
+	
+		JLabel lblKundennummer = new JLabel("Kundennummer");
+		JLabel lblKontonummer = new JLabel("Kontonummer");
+		JLabel lblKontoart = new JLabel("Kontoart");
+		JLabel lblKontostand = new JLabel("Kontostand");
+		JLabel lblEur = new JLabel("EUR");
+		
+		lblKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		lblKontonummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		lblKontoart.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		lblKontostand.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		lblEur.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		
+		lblKundennummer.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblKontonummer.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblKontoart.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblKontostand.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblEur.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		lblKundennummer.setBounds(150, 145, 150, 16);
+		lblKontonummer.setBounds(150, 175, 150, 16);
+		lblKontoart.setBounds(150, 205, 150, 16);
+		lblKontostand.setBounds(150, 255, 150, 16);
+		lblEur.setBounds(470, 255, 30, 16);
+		
+		panel.add(lblKundennummer);
+		panel.add(lblKontonummer);
+		panel.add(lblKontoart);
+		panel.add(lblKontostand);
+		panel.add(lblEur);
+		
+		JRadioButton rdbtnGirokonto = new JRadioButton("Girokonto");
+		JRadioButton rdbtnSparkonto = new JRadioButton("Sparkonto");
+		
+		rdbtnGirokonto.setBounds(320, 200, 141, 23);
+		rdbtnSparkonto.setBounds(320, 220, 141, 23);
+		
+		panel.add(rdbtnGirokonto);
+		panel.add(rdbtnSparkonto);
+		
+		JSeparator sepOben = new JSeparator();
+		JSeparator sepUnten = new JSeparator();
+		sepOben.setBackground(Color.BLACK);
+		sepUnten.setBackground(Color.BLACK);
+		
+		sepOben.setBounds(55, 360, 490, 20);
+		sepUnten.setBounds(55, 100, 490, 20);
+		
+		panel.add(sepOben);
+		panel.add(sepUnten);
+		
+		JButton btnKontoAnlegen = new JButton("anlegen");
+		btnKontoAnlegen.setBounds(230, 400, 135, 30);
+		panel.add(btnKontoAnlegen);
 		
 		panel.repaint();
    }

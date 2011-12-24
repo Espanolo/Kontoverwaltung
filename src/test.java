@@ -15,6 +15,7 @@ import javax.swing.JSeparator;
 import java.awt.Color;
 import java.net.URL;
 import javax.swing.JButton;
+import javax.swing.JRadioButton;
 
 
 public class test extends JFrame {
@@ -49,7 +50,7 @@ public class test extends JFrame {
 	public test() {
 		
 		JPanel panel = new JPanel();
-		getContentPane().add(panel, BorderLayout.CENTER);
+		getContentPane().add(panel, BorderLayout.EAST);
 		panel.setLayout(null);
 		
 		txtVorname = new JTextField();
@@ -146,5 +147,9 @@ public class test extends JFrame {
 		JButton btnKundenAnlegen = new JButton("anlegen");
 		btnKundenAnlegen.setBounds(231, 404, 134, 29);
 		panel.add(btnKundenAnlegen);
+		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("Girokonto");
+		rdbtnNewRadioButton.setBounds(442, 140, 141, 23);
+		panel.add(rdbtnNewRadioButton);
 	}
 }
