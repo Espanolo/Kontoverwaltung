@@ -4,11 +4,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FirstGUI extends JFrame
+public class KontoverwaltungsFenster extends JFrame
 {
 		JPanel panel;
 
-   public FirstGUI()
+   public KontoverwaltungsFenster()
    {
        super("Kontoverwaltung");
        setSize(600,500);
@@ -178,97 +178,101 @@ public class FirstGUI extends JFrame
 		
 	}
    public void newCustomerPanel(){
-	  
-		JLabel lblLogo = new JLabel("New label");
+	   	
+	   /**
+		 * Logo laden
+		 * @author DMF
+		 */
+		JLabel lblLogo = new JLabel();
 		lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
-		lblLogo.setBounds(200, 16, 214, 74);
+		lblLogo.setBounds(200, 15, 215, 75);
 		panel.add(lblLogo);
 		
-	    JTextField txtVorname = new JTextField();
-		txtVorname.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		txtVorname.setBounds(310, 169, 134, 28);
-		panel.add(txtVorname);
-		txtVorname.setColumns(10);
-		
-		JTextField txtNachname = new JTextField();
-		txtNachname.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		txtNachname.setBounds(310, 197, 134, 28);
-		panel.add(txtNachname);
-		txtNachname.setColumns(10);
-		
-		JTextField txtStra§e = new JTextField();
-		txtStra§e.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		txtStra§e.setBounds(310, 249, 134, 28);
-		panel.add(txtStra§e);
-		txtStra§e.setColumns(10);
-		
-		JTextField txtPlz = new JTextField();
-		txtPlz.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		txtPlz.setBounds(310, 277, 134, 28);
-		panel.add(txtPlz);
-		txtPlz.setColumns(10);
-		
-		JTextField txtOrt = new JTextField();
-		txtOrt.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		txtOrt.setBounds(310, 306, 134, 28);
-		panel.add(txtOrt);
-		txtOrt.setColumns(10);
-		
+		/**
+		 * Alle Labels und Textfelder erstellen
+		 * @author DMF
+		 */
 		JTextField txtKundennummer = new JTextField();
-		txtKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		txtKundennummer.setBounds(310, 140, 134, 28);
+	    JTextField txtVorname = new JTextField();
+	    JTextField txtNachname = new JTextField();
+	    JTextField txtStra§e = new JTextField();
+	    JTextField txtPlz = new JTextField();
+	    JTextField txtOrt = new JTextField();
+	    
+	    txtKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		txtVorname.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		txtNachname.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		txtStra§e.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		txtPlz.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		txtOrt.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		
+		txtKundennummer.setBounds(320, 140, 150, 25);
+		txtVorname.setBounds(320, 170, 150, 25);
+		txtNachname.setBounds(320, 200, 150, 25);
+		txtStra§e.setBounds(320, 250, 150, 25);
+		txtPlz.setBounds(320, 280, 150, 25);
+		txtOrt.setBounds(320, 310, 150, 25);
+		
 		panel.add(txtKundennummer);
-		txtKundennummer.setColumns(10);
+		panel.add(txtVorname);
+		panel.add(txtNachname);
+		panel.add(txtStra§e);
+		panel.add(txtPlz);
+		panel.add(txtOrt);
+		
+		
+
 		
 		JLabel lblKundennummer = new JLabel("Kundennummer");
-		lblKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		lblKundennummer.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblKundennummer.setBounds(129, 146, 151, 16);
-		panel.add(lblKundennummer);
-		
 		JLabel lblVorname = new JLabel("Vorname");
-		lblVorname.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		lblVorname.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblVorname.setBounds(129, 175, 151, 16);
-		panel.add(lblVorname);
-		
 		JLabel lblNachname = new JLabel("Nachname");
-		lblNachname.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		lblNachname.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNachname.setBounds(129, 203, 151, 16);
-		panel.add(lblNachname);
-		
+		JLabel lblStrasse = new JLabel("Strasse");
+		JLabel lblPLZ = new JLabel("PLZ");
 		JLabel lblOrt = new JLabel("Ort");
-		lblOrt.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
+		
+		lblKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		lblVorname.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		lblNachname.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		lblStrasse.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		lblPLZ.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		lblOrt.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		
+		lblKundennummer.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblVorname.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNachname.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblStrasse.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblPLZ.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblOrt.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblOrt.setBounds(129, 312, 151, 16);
+		
+		lblKundennummer.setBounds(150, 145, 150, 16);
+		lblVorname.setBounds(150, 175, 150, 16);
+		lblNachname.setBounds(150, 205, 150, 16);
+		lblStrasse.setBounds(150, 255, 150, 16);
+		lblPLZ.setBounds(150, 285, 150, 16);
+		lblOrt.setBounds(150, 315, 150, 16);
+		
+		panel.add(lblKundennummer);
+		panel.add(lblVorname);
+		panel.add(lblNachname);
+		panel.add(lblStrasse);
+		panel.add(lblPLZ);
 		panel.add(lblOrt);
 		
-		JLabel lblPLZ = new JLabel("PLZ");
-		lblPLZ.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		lblPLZ.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblPLZ.setBounds(129, 283, 151, 16);
-		panel.add(lblPLZ);
-		
-		JLabel lblStrasse = new JLabel("Strasse");
-		lblStrasse.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		lblStrasse.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblStrasse.setBounds(129, 255, 151, 16);
-		panel.add(lblStrasse);
-		
 		JSeparator sepOben = new JSeparator();
-		sepOben.setBackground(Color.BLACK);
-		sepOben.setBounds(55, 360, 490, 20);
-		panel.add(sepOben);
-		
 		JSeparator sepUnten = new JSeparator();
+		sepOben.setBackground(Color.BLACK);
 		sepUnten.setBackground(Color.BLACK);
-		sepUnten.setBounds(55, 102, 490, 20);
+		
+		sepOben.setBounds(55, 360, 490, 20);
+		sepUnten.setBounds(55, 100, 490, 20);
+		
+		panel.add(sepOben);
 		panel.add(sepUnten);
 		
 		JButton btnKundenAnlegen = new JButton("anlegen");
-		btnKundenAnlegen.setBounds(231, 404, 134, 29);
+		btnKundenAnlegen.setBounds(230, 400, 135, 30);
 		panel.add(btnKundenAnlegen);
+		
 		panel.repaint();
    }
 	

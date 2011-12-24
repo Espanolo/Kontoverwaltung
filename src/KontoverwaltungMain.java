@@ -1,6 +1,3 @@
-import java.awt.FlowLayout;
-import java.awt.event.*;
-import javax.swing.*;
 
 	/**
 	 * Java Projekt WS11
@@ -29,6 +26,6 @@ public class KontoverwaltungMain {
 		 * Das Hauptfenster für das Programm wird initialisiert
 		 * @author DMF
 		 */
-		FirstGUI mainWindow = new FirstGUI();
+		KontoverwaltungsFenster mainWindow = new KontoverwaltungsFenster();
 	}
 }
