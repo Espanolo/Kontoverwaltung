@@ -132,7 +132,7 @@ public class KontoverwaltungsFenster extends JFrame
 		editAccount.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
-						//Funktionen fehlen
+						kontoBearbeitenPanel();
 					}
 				}
 		);
@@ -177,7 +177,11 @@ public class KontoverwaltungsFenster extends JFrame
 		
 	}
    public void kundenAnlegenPanel(){
-	   		
+	   	/**
+		 * Kundenanlegen-Panel um neue Kunden anzulegen
+		 * @author DMF
+		 */	
+	   
 	   	//Entfernt alle zuvor hinzugefügten Objekte vom Panel
 	    panel.removeAll();
 
@@ -195,6 +199,7 @@ public class KontoverwaltungsFenster extends JFrame
 	    JTextField txtPlz = new JTextField();
 	    JTextField txtOrt = new JTextField();
 	    
+	    //Schriftart und Größe festlegen
 	    txtKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		txtVorname.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		txtNachname.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
@@ -202,6 +207,7 @@ public class KontoverwaltungsFenster extends JFrame
 		txtPlz.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		txtOrt.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		
+		//Textfelder positionieren
 		txtKundennummer.setBounds(320, 140, 150, 25);
 		txtVorname.setBounds(320, 170, 150, 25);
 		txtNachname.setBounds(320, 200, 150, 25);
@@ -209,6 +215,7 @@ public class KontoverwaltungsFenster extends JFrame
 		txtPlz.setBounds(320, 280, 150, 25);
 		txtOrt.setBounds(320, 310, 150, 25);
 		
+		//Textfelder dem Panel hinzufügen
 		panel.add(txtKundennummer);
 		panel.add(txtVorname);
 		panel.add(txtNachname);
@@ -216,7 +223,7 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(txtPlz);
 		panel.add(txtOrt);
 		
-		
+		//Label erstellen und bennen
 		JLabel lblKundennummer = new JLabel("Kundennummer");
 		JLabel lblVorname = new JLabel("Vorname");
 		JLabel lblNachname = new JLabel("Nachname");
@@ -224,6 +231,7 @@ public class KontoverwaltungsFenster extends JFrame
 		JLabel lblPLZ = new JLabel("PLZ");
 		JLabel lblOrt = new JLabel("Ort");
 		
+		//Schriftart und Größe festlegen
 		lblKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		lblVorname.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		lblNachname.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
@@ -231,6 +239,7 @@ public class KontoverwaltungsFenster extends JFrame
 		lblPLZ.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		lblOrt.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		
+		//Ausrichtung festlegen
 		lblKundennummer.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblVorname.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNachname.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -238,6 +247,7 @@ public class KontoverwaltungsFenster extends JFrame
 		lblPLZ.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblOrt.setHorizontalAlignment(SwingConstants.RIGHT);
 		
+		//Label positionieren
 		lblKundennummer.setBounds(150, 145, 150, 16);
 		lblVorname.setBounds(150, 175, 150, 16);
 		lblNachname.setBounds(150, 205, 150, 16);
@@ -265,15 +275,21 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(sepOben);
 		panel.add(sepUnten);
 		
+		//Kundenanlegen Button erstellen
 		JButton btnKundenAnlegen = new JButton("anlegen");
 		btnKundenAnlegen.setBounds(230, 400, 135, 30);
 		panel.add(btnKundenAnlegen);
 		
+		//Objekte neu malen
 		panel.repaint();
    }
    
    public void kontoAnlegenPanel(){
-	    
+	   	/**
+		 * Kontoanlegen-Panel um Konten anzulegen
+		 * @author DMF
+		 */
+	   
 	    //Entfernt alle zuvor hinzugefügten Objekte vom Panel
 	    panel.removeAll();
 	   
@@ -288,36 +304,43 @@ public class KontoverwaltungsFenster extends JFrame
 	    JTextField txtKontonummer = new JTextField();
 	    JTextField txtKontostand = new JTextField();
 	    
+	    //Schriftart und Größe festlegen
 	    txtKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		txtKontonummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		txtKontostand.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		
+		//Text Felder Positionen setzen
 		txtKundennummer.setBounds(320, 140, 150, 25);
 		txtKontonummer.setBounds(320, 170, 150, 25);
 		txtKontostand.setBounds(320, 250, 150, 25);
 		
+		//Textfelder dem Panel hinzufügen
 		panel.add(txtKundennummer);
 		panel.add(txtKontonummer);
 		panel.add(txtKontostand);
 	
+		//Label erstellen und bennen
 		JLabel lblKundennummer = new JLabel("Kundennummer");
 		JLabel lblKontonummer = new JLabel("Kontonummer");
 		JLabel lblKontoart = new JLabel("Kontoart");
 		JLabel lblKontostand = new JLabel("Kontostand");
 		JLabel lblEur = new JLabel("EUR");
 		
+		//Schriftart und Größe festlegen
 		lblKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		lblKontonummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		lblKontoart.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		lblKontostand.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		lblEur.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		
+		//Ausrichtung festlegen
 		lblKundennummer.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblKontonummer.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblKontoart.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblKontostand.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblEur.setHorizontalAlignment(SwingConstants.RIGHT);
 		
+		//Label Positionen setzen
 		lblKundennummer.setBounds(150, 145, 150, 16);
 		lblKontonummer.setBounds(150, 175, 150, 16);
 		lblKontoart.setBounds(150, 205, 150, 16);
@@ -358,8 +381,109 @@ public class KontoverwaltungsFenster extends JFrame
 		btnKontoAnlegen.setBounds(230, 400, 135, 30);
 		panel.add(btnKontoAnlegen);
 		
+		//Objekte neu malen
+		panel.repaint();
+   }
+   
+   public void kontoBearbeitenPanel(){
+	    /**
+		 * Kontobearbeiten-Panel um Konten zu bearbeiten
+		 * @author DMF
+		 */
+	   
+	    //Entfernt alle zuvor hinzugefügten Objekte vom Panel
+	    panel.removeAll();
+	   
+		//Logo laden
+		JLabel lblLogo = new JLabel();
+		lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
+		lblLogo.setBounds(200, 15, 215, 75);
+		panel.add(lblLogo);
+
+		//Alle Labels und Textfelder erstellen
+		JTextField txtKundennummer = new JTextField();
+	    JTextField txtKontonummer = new JTextField();
+	    JTextField txtKontostand = new JTextField();
+	    
+	    //Schriftart und Größe festlegen
+	    txtKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		txtKontonummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		txtKontostand.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		
-		//panel.repaint();
+		//Text Felder Positionen setzen
+		txtKundennummer.setBounds(320, 140, 150, 25);
+		txtKontonummer.setBounds(320, 170, 150, 25);
+		txtKontostand.setBounds(320, 250, 150, 25);
+		
+		//Textfelder dem Panel hinzufügen
+		panel.add(txtKundennummer);
+		panel.add(txtKontonummer);
+		panel.add(txtKontostand);
+	
+		//Label erstellen und bennen
+		JLabel lblKundennummer = new JLabel("Kundennummer");
+		JLabel lblKontonummer = new JLabel("Kontonummer");
+		JLabel lblKontoart = new JLabel("Kontoart");
+		JLabel lblKontostand = new JLabel("Kontostand");
+		JLabel lblEur = new JLabel("EUR");
+		
+		//Schriftart und Größe festlegen
+		lblKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		lblKontonummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		lblKontoart.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		lblKontostand.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		lblEur.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		
+		//Ausrichtung festlegen
+		lblKundennummer.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblKontonummer.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblKontoart.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblKontostand.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblEur.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		//Label Positionen setzen
+		lblKundennummer.setBounds(150, 145, 150, 16);
+		lblKontonummer.setBounds(150, 175, 150, 16);
+		lblKontoart.setBounds(150, 205, 150, 16);
+		lblKontostand.setBounds(150, 255, 150, 16);
+		lblEur.setBounds(470, 255, 30, 16);
+		
+		//Labels zum Panel hinzufügen
+		panel.add(lblKundennummer);
+		panel.add(lblKontonummer);
+		panel.add(lblKontoart);
+		panel.add(lblKontostand);
+		panel.add(lblEur);
+		
+		//RadioButtons für die Auswahl erstellen, positionieren und hinzufügen
+		JRadioButton rdbtnGirokonto = new JRadioButton("Girokonto");
+		JRadioButton rdbtnSparkonto = new JRadioButton("Sparkonto");
+		
+		rdbtnGirokonto.setBounds(320, 200, 141, 23);
+		rdbtnSparkonto.setBounds(320, 220, 141, 23);
+		
+		panel.add(rdbtnGirokonto);
+		panel.add(rdbtnSparkonto);
+		
+		//Separatoren für Oben und Unten 
+		JSeparator sepOben = new JSeparator();
+		JSeparator sepUnten = new JSeparator();
+		sepOben.setBackground(Color.BLACK);
+		sepUnten.setBackground(Color.BLACK);
+		
+		sepOben.setBounds(55, 360, 490, 20);
+		sepUnten.setBounds(55, 100, 490, 20);
+		
+		panel.add(sepOben);
+		panel.add(sepUnten);
+		
+		//Kontoanlegen Button hinzufügen
+		JButton btnKontoAnlegen = new JButton("anlegen");
+		btnKontoAnlegen.setBounds(230, 400, 135, 30);
+		panel.add(btnKontoAnlegen);
+		
+		//Objekte neu malen
+		panel.repaint();
    }
 	
  }
