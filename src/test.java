@@ -16,6 +16,12 @@ import java.awt.Color;
 import java.net.URL;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
+import javax.swing.JTextPane;
+import javax.swing.JList;
+import javax.swing.AbstractListModel;
+import javax.swing.event.AncestorListener;
+import javax.swing.event.AncestorEvent;
 
 
 public class test extends JFrame {
@@ -151,5 +157,10 @@ public class test extends JFrame {
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("Girokonto");
 		rdbtnNewRadioButton.setBounds(442, 140, 141, 23);
 		panel.add(rdbtnNewRadioButton);
+		
+		JList list = new JList();
+		getContentPane().add(list, BorderLayout.CENTER);
+		list.setBounds(50, 50, 20, 40);
+		
 	}
 }
