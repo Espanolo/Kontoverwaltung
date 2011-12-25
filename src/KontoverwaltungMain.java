@@ -4,7 +4,7 @@
 	 * Kontoverwaltungsprogramm
 	 * 
 	 * 
-	 * @author Dennis Morales, Markus Mayer, Marco Rubin
+	 * @author Dennis Morales Flores
 	 */
 
 

@@ -158,9 +158,9 @@ public class test extends JFrame {
 		rdbtnNewRadioButton.setBounds(442, 140, 141, 23);
 		panel.add(rdbtnNewRadioButton);
 		
-		JList list = new JList();
-		getContentPane().add(list, BorderLayout.CENTER);
-		list.setBounds(50, 50, 20, 40);
+		JLabel lblHallo = new JLabel("Test");
+		lblHallo.setVerticalAlignment(SwingConstants.TOP);
+		getContentPane().add(lblHallo, BorderLayout.CENTER);
 		
 	}
 }

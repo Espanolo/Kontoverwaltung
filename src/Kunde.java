@@ -1,7 +1,7 @@
 import com.sun.tools.javac.util.List;
 
 /**
- * Kundenklasse
+ * Kunden Klasse
  * @author DMF
  */
 

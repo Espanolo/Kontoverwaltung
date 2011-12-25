@@ -1,5 +1,4 @@
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,32 +13,30 @@ public class KontoverwaltungsFenster extends JFrame
        setSize(600,500);
        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        setLayout(new BorderLayout(5,5));
+       setResizable(false);
 
        panel = new JPanel();
        panel.setLayout(null);
        super.add(panel); 
   
+       //Logo laden
+     	JLabel lblLogo = new JLabel();
+     	lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
+   		lblLogo.setBounds(300-107,250-75, 215, 75);
+   		panel.add(lblLogo);
        
-       
-       /**
-		 * Die MenüBar wird erstellt und die einzelnen Items werden hinzugefügt
-		 * @author DMF
-		 */
+   		//Datei Item
 		JMenuBar menuBar = new JMenuBar();
 		JMenu fileMenu = new JMenu("Datei");
 		menuBar.add(fileMenu);
 		setJMenuBar(menuBar);
 		fileMenu.addSeparator();
 		
-		
-		
+		//Beenden Item
 		JMenuItem close = new JMenuItem("Beenden");
 		fileMenu.add(close);
 		
-		/**
-		 * Actionlistener fürs beenden 
-		 * @author DMF
-		 */
+		//Actionlistener fürs beenden 
 		close.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -48,10 +45,7 @@ public class KontoverwaltungsFenster extends JFrame
 				}
 		);
 		
-		/**
-		 * Erstellt den MenüEintrag Kunde mit allen nötigen Items
-		 * @author DMF
-		 */
+		//Erstellt den MenüEintrag Kunde mit allen nötigen Items
 		JMenu customerMenu = new JMenu("Kunde");
 		menuBar.add(customerMenu);
 		JMenuItem newCustomer = new JMenuItem("Neue Kunden erstellen");
@@ -63,10 +57,8 @@ public class KontoverwaltungsFenster extends JFrame
 		JMenuItem deleteCustomer = new JMenuItem("Kunde löschen");
 		customerMenu.add(deleteCustomer);
 		
-		/**
-		 * ActionListner für die Kunden Items hinzufügen
-		 * @author DMF
-		 */
+		
+		//ActionListner für die Kunden Items hinzufügen
 		newCustomer.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -84,37 +76,27 @@ public class KontoverwaltungsFenster extends JFrame
 		editCustomer.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
-						//Funktionen fehlen
+						kundenBearbeitenPanel();
 					}
 				}
 		);
 		deleteCustomer.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
-						//Funktionen fehlen
+						kundenLoeschenPanel();
 					}
 				}
 		);
 		
-		/**
-		 * Erstellt den MenüEintrag Konto mit allen nötigen Items
-		 * @author DMF
-		 */
+		//Erstellt den MenüEintrag Konto mit allen nötigen Items
 		JMenu accoutMenu = new JMenu("Konto");
 		menuBar.add(accoutMenu);
 		JMenuItem newAccount = new JMenuItem("Neues Konto erstellen");
 		accoutMenu.add(newAccount);
 		JMenuItem allAccounts = new JMenuItem("Alle Konten anzeigen");
 		accoutMenu.add(allAccounts);
-		JMenuItem editAccount = new JMenuItem("Konto bearbeiten");
-		accoutMenu.add(editAccount);
-		JMenuItem deleteAccount = new JMenuItem("Konto löschen");
-		accoutMenu.add(deleteAccount);
 		
-		/**
-		 * ActionListner für die Konten Items hinzufügen
-		 * @author DMF
-		 */
+		//ActionListner für die Konten Items hinzufügen
 		newAccount.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -129,58 +111,32 @@ public class KontoverwaltungsFenster extends JFrame
 					}
 				}
 		);
-		editAccount.addActionListener(
-				new ActionListener(){
-					public void actionPerformed(ActionEvent e){
-						kontoBearbeitenPanel();
-					}
-				}
-		);
-		deleteAccount.addActionListener(
-				new ActionListener(){
-					public void actionPerformed(ActionEvent e){
-						//Funktionen fehlen
-					}
-				}
-		);
 		
-		/**
-		 * Hier soll eine kleine Programmerklärung, sowie Versionsnumemr und Autoren stehen
-		 * @author DMF
-		 */
+		//Info Menü
 		JMenu helpMenu = new JMenu("Hilfe");
 		menuBar.add(helpMenu);
 		JMenuItem info = new JMenuItem("Über das Programm");
 		helpMenu.add(info);
 		
-		/**
-		 * ActionListner für Info
-		 * @author DMF
-		 */
+		//ActionListner für Info
 		info.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
-						//Funktionen fehlen
+						infoPanel();
 					}
 				}
 		);
 		
-		
-		
-		
-		/**
-		 * Das Hauptfenster wird dargestellt
-		 * @author DMF
-		 */
+		//Sichtbarkeit des Hauptfensters wird aktiviert 
 		setVisible(true);
-		
-		
 	}
+   
+   /**
+	 * Kundenanlegen-Panel um neue Kunden anzulegen
+	 * @author DMF
+	 */	
    public void kundenAnlegenPanel(){
-	   	/**
-		 * Kundenanlegen-Panel um neue Kunden anzulegen
-		 * @author DMF
-		 */	
+	   	
 	   
 	   	//Entfernt alle zuvor hinzugefügten Objekte vom Panel
 	    panel.removeAll();
@@ -188,10 +144,16 @@ public class KontoverwaltungsFenster extends JFrame
 		//Logo laden
 		JLabel lblLogo = new JLabel();
 		lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
-		lblLogo.setBounds(200, 15, 215, 75);
+		lblLogo.setBounds(55, 15, 215, 75);
 		panel.add(lblLogo);
-
-		//Alle Labels und Textfelder erstellen
+		
+		//Info Label anzeigen
+		JLabel lblKundenAnlegen = new JLabel("Kunde anlegen");
+		lblKundenAnlegen.setFont(new Font("KufiStandardGK", Font.BOLD, 20));
+		lblKundenAnlegen.setBounds(340, 75, 200, 16);
+		panel.add(lblKundenAnlegen);
+		
+		//Textfelder erstellen
 		JTextField txtKundennummer = new JTextField();
 	    JTextField txtVorname = new JTextField();
 	    JTextField txtNachname = new JTextField();
@@ -284,11 +246,12 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.repaint();
    }
    
+   /**
+	 * Kundenanlegen-Panel um neue Kunden anzulegen
+	 * @author DMF
+	 */	
    public void alleKundenAnzeigenPanel(){
-	   	/**
-		 * Kundenanlegen-Panel um neue Kunden anzulegen
-		 * @author DMF
-		 */	
+	   	
 	   
 	   	//Entfernt alle zuvor hinzugefügten Objekte vom Panel
 	    panel.removeAll();
@@ -296,8 +259,14 @@ public class KontoverwaltungsFenster extends JFrame
 		//Logo laden
 		JLabel lblLogo = new JLabel();
 		lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
-		lblLogo.setBounds(200, 15, 215, 75);
+		lblLogo.setBounds(55, 15, 215, 75);
 		panel.add(lblLogo);
+		
+		//Info Label erstellen
+		JLabel lblAlleKundenAnzeigen = new JLabel("Kunden anzeigen");
+		lblAlleKundenAnzeigen.setFont(new Font("KufiStandardGK", Font.BOLD, 20));
+		lblAlleKundenAnzeigen.setBounds(340, 75, 200, 16);
+		panel.add(lblAlleKundenAnzeigen);
 
 		//Label erstellen und bennen
 		JLabel lblKundennummer = new JLabel("Kundennummer");
@@ -309,15 +278,10 @@ public class KontoverwaltungsFenster extends JFrame
 		lblVorname.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		lblNachname.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 				
-		//Ausrichtung festlegen
-		lblKundennummer.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblVorname.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNachname.setHorizontalAlignment(SwingConstants.RIGHT);
-				
 		//Label positionieren
 		lblKundennummer.setBounds(60, 130, 150, 16);
 		lblVorname.setBounds(290, 130, 150, 16);
-		lblNachname.setBounds(470, 130, 150, 16);
+		lblNachname.setBounds(480, 130, 150, 16);
 	
 				
 		//Labels zum Panel hinzufügen
@@ -327,7 +291,7 @@ public class KontoverwaltungsFenster extends JFrame
 		
 		//Liste für die Ausgabe der Kunden
 		JList list = new JList();
-		list.setBounds(60, 250, 485, 100);
+		list.setBounds(60, 150, 485, 200);
 		panel.add(list);
 				
 		//Separatoren für Oben und Unten 
@@ -346,11 +310,12 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.repaint();
    }
    
+   /**
+	 * Kundenbearbeiten-Panel um neue Kunden anzulegen
+	 * @author DMF
+	 */
    public void kundenBearbeitenPanel(){
-	   	/**
-		 * Kundenbearbeiten-Panel um neue Kunden anzulegen
-		 * @author DMF
-		 */	
+	   		
 	   
 	   	//Entfernt alle zuvor hinzugefügten Objekte vom Panel
 	    panel.removeAll();
@@ -358,10 +323,16 @@ public class KontoverwaltungsFenster extends JFrame
 		//Logo laden
 		JLabel lblLogo = new JLabel();
 		lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
-		lblLogo.setBounds(200, 15, 215, 75);
+		lblLogo.setBounds(55, 15, 215, 75);
 		panel.add(lblLogo);
+		
+		//Info Label erstellen
+		JLabel lblKundenBearbeiten = new JLabel("Kunden bearbeiten");
+		lblKundenBearbeiten.setFont(new Font("KufiStandardGK", Font.BOLD, 20));
+		lblKundenBearbeiten.setBounds(340, 75, 200, 16);
+		panel.add(lblKundenBearbeiten);
 
-		//Alle Labels und Textfelder erstellen
+		//Textfelder erstellen
 		JTextField txtKundennummer = new JTextField();
 	    JTextField txtVorname = new JTextField();
 	    JTextField txtNachname = new JTextField();
@@ -446,7 +417,7 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(sepUnten);
 		
 		//Kundenanlegen Button erstellen
-		JButton btnKundenAnlegen = new JButton("anlegen");
+		JButton btnKundenAnlegen = new JButton("löschen");
 		btnKundenAnlegen.setBounds(230, 400, 135, 30);
 		panel.add(btnKundenAnlegen);
 		
@@ -455,11 +426,136 @@ public class KontoverwaltungsFenster extends JFrame
    
    }
    
+   /**
+	 * Kundenlöschen-Panel um Kunden zu löschen
+	 * @author DMF
+	 */	
+   public void kundenLoeschenPanel(){
+	   
+	   
+	   	//Entfernt alle zuvor hinzugefügten Objekte vom Panel
+	    panel.removeAll();
+
+		//Logo laden
+		JLabel lblLogo = new JLabel();
+		lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
+		lblLogo.setBounds(55, 15, 215, 75);
+		panel.add(lblLogo);
+		
+		//Info Label erstellen
+		JLabel lblKundenLoeschen = new JLabel("Kunden löschen");
+		lblKundenLoeschen.setFont(new Font("KufiStandardGK", Font.BOLD, 20));
+		lblKundenLoeschen.setBounds(340, 75, 200, 16);
+		panel.add(lblKundenLoeschen);
+
+		//Textfelder erstellen
+		JTextField txtKundennummer = new JTextField();
+	    JTextField txtVorname = new JTextField();
+	    JTextField txtNachname = new JTextField();
+	    JTextField txtStraße = new JTextField();
+	    JTextField txtPlz = new JTextField();
+	    JTextField txtOrt = new JTextField();
+	    
+	    //Schriftart und Größe festlegen
+	    txtKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		txtVorname.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		txtNachname.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		txtStraße.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		txtPlz.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		txtOrt.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		
+		//Textfelder positionieren
+		txtKundennummer.setBounds(170, 140, 150, 25);
+		txtVorname.setBounds(170, 170, 150, 25);
+		txtNachname.setBounds(170, 200, 150, 25);
+		txtStraße.setBounds(170, 250, 150, 25);
+		txtPlz.setBounds(170, 280, 150, 25);
+		txtOrt.setBounds(170, 310, 150, 25);
+		
+		//Textfelder dem Panel hinzufügen
+		panel.add(txtKundennummer);
+		panel.add(txtVorname);
+		panel.add(txtNachname);
+		panel.add(txtStraße);
+		panel.add(txtPlz);
+		panel.add(txtOrt);
+		
+		//Label erstellen und bennen
+		JLabel lblKundennummer = new JLabel("Kundennummer");
+		JLabel lblVorname = new JLabel("Vorname");
+		JLabel lblNachname = new JLabel("Nachname");
+		JLabel lblStrasse = new JLabel("Strasse");
+		JLabel lblPLZ = new JLabel("PLZ");
+		JLabel lblOrt = new JLabel("Ort");
+		JLabel lblZugehoerigeKonten = new JLabel("zugehörige Konten:");
+		
+		//Schriftart und Größe festlegen
+		lblKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		lblVorname.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		lblNachname.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		lblStrasse.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		lblPLZ.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		lblOrt.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		lblZugehoerigeKonten.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		
+		//Ausrichtung festlegen
+		lblKundennummer.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblVorname.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNachname.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblStrasse.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblPLZ.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblOrt.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		//Label positionieren
+		lblKundennummer.setBounds(8, 145, 150, 16);
+		lblVorname.setBounds(8, 175, 150, 16);
+		lblNachname.setBounds(8, 205, 150, 16);
+		lblStrasse.setBounds(8, 255, 150, 16);
+		lblPLZ.setBounds(8, 285, 150, 16);
+		lblOrt.setBounds(8, 315, 150, 16);
+		lblZugehoerigeKonten.setBounds(350, 150, 150, 16);
+		
+		//Labels zum Panel hinzufügen
+		panel.add(lblKundennummer);
+		panel.add(lblVorname);
+		panel.add(lblNachname);
+		panel.add(lblStrasse);
+		panel.add(lblPLZ);
+		panel.add(lblOrt);
+		panel.add(lblZugehoerigeKonten);
+		
+		//Liste für die Ausgabe der Konten
+		JList list = new JList();
+		list.setBounds(350, 170, 195, 165);
+		panel.add(list);
+				
+		//Separatoren für Oben und Unten 
+		JSeparator sepOben = new JSeparator();
+		JSeparator sepUnten = new JSeparator();
+		sepOben.setBackground(Color.BLACK);
+		sepUnten.setBackground(Color.BLACK);
+		
+		sepOben.setBounds(55, 360, 490, 20);
+		sepUnten.setBounds(55, 100, 490, 20);
+		
+		panel.add(sepOben);
+		panel.add(sepUnten);
+		
+		//Kundenanlegen Button erstellen
+		JButton btnKundeLoeschen = new JButton("löschen");
+		btnKundeLoeschen.setBounds(230, 400, 135, 30);
+		panel.add(btnKundeLoeschen);
+		
+		//Objekte neu malen
+		panel.repaint();
+   }
+   
+   /**
+	 * Kontoanlegen-Panel um Konten anzulegen
+	 * @author DMF
+	 */
    public void kontoAnlegenPanel(){
-	   	/**
-		 * Kontoanlegen-Panel um Konten anzulegen
-		 * @author DMF
-		 */
+	   	
 	   
 	    //Entfernt alle zuvor hinzugefügten Objekte vom Panel
 	    panel.removeAll();
@@ -467,10 +563,16 @@ public class KontoverwaltungsFenster extends JFrame
 		//Logo laden
 		JLabel lblLogo = new JLabel();
 		lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
-		lblLogo.setBounds(200, 15, 215, 75);
+		lblLogo.setBounds(55, 15, 215, 75);
 		panel.add(lblLogo);
+		
+		//Info Label erstellen
+		JLabel lblKontoLoeschen = new JLabel("Konto anlegen");
+		lblKontoLoeschen.setFont(new Font("KufiStandardGK", Font.BOLD, 20));
+		lblKontoLoeschen.setBounds(340, 75, 200, 16);
+		panel.add(lblKontoLoeschen);
 
-		//Alle Labels und Textfelder erstellen
+		//Textfelder erstellen
 		JTextField txtKundennummer = new JTextField();
 	    JTextField txtKontonummer = new JTextField();
 	    JTextField txtKontostand = new JTextField();
@@ -556,11 +658,12 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.repaint();
    }
    
+   /**
+	 * Kontenanzeigen-Panel um alle Konten anzuzeigen
+	 * @author DMF
+	 */	
    public void alleKontenAnzeigenPanel(){
-	   	/**
-		 * Kontenanzeigen-Panel um alle Konten anzuzeigen
-		 * @author DMF
-		 */	
+	   	
 	   
 	   	//Entfernt alle zuvor hinzugefügten Objekte vom Panel
 	    panel.removeAll();
@@ -568,10 +671,16 @@ public class KontoverwaltungsFenster extends JFrame
 		//Logo laden
 		JLabel lblLogo = new JLabel();
 		lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
-		lblLogo.setBounds(200, 15, 215, 75);
+		lblLogo.setBounds(55, 15, 215, 75);
 		panel.add(lblLogo);
+		
+		//Info Label erstellen
+		JLabel lblKontenAnzeigen = new JLabel("Konten anzeigen");
+		lblKontenAnzeigen.setFont(new Font("KufiStandardGK", Font.BOLD, 20));
+		lblKontenAnzeigen.setBounds(340, 75, 200, 16);
+		panel.add(lblKontenAnzeigen);
 
-		//Alle Labels und Textfelder erstellen
+		//Textfelder erstellen
 		JTextField txtKundennummer = new JTextField();
 	    JTextField txtVorname = new JTextField();
 	    JTextField txtNachname = new JTextField();
@@ -649,11 +758,12 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.repaint();
    }
    
+   /**
+	 * Kontobearbeiten-Panel um Konten zu bearbeiten
+	 * @author DMF
+	 */
    public void kontoBearbeitenPanel(){
-	    /**
-		 * Kontobearbeiten-Panel um Konten zu bearbeiten
-		 * @author DMF
-		 */
+	    
 	   
 	    //Entfernt alle zuvor hinzugefügten Objekte vom Panel
 	    panel.removeAll();
@@ -661,10 +771,16 @@ public class KontoverwaltungsFenster extends JFrame
 		//Logo laden
 		JLabel lblLogo = new JLabel();
 		lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
-		lblLogo.setBounds(200, 15, 215, 75);
+		lblLogo.setBounds(55, 15, 215, 75);
 		panel.add(lblLogo);
+		
+		//Info Label erstellen
+		JLabel lblKontoBearbeiten = new JLabel("Konto bearbeiten");
+		lblKontoBearbeiten.setFont(new Font("KufiStandardGK", Font.BOLD, 20));
+		lblKontoBearbeiten.setBounds(340, 75, 200, 16);
+		panel.add(lblKontoBearbeiten);
 
-		//Alle Labels und Textfelder erstellen
+		//Textfelder erstellen
 		JTextField txtKundennummer = new JTextField();
 	    JTextField txtKontonummer = new JTextField();
 	    JTextField txtKontostand = new JTextField();
@@ -742,12 +858,37 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(sepUnten);
 		
 		//Kontoanlegen Button hinzufügen
-		JButton btnKontoAnlegen = new JButton("anlegen");
-		btnKontoAnlegen.setBounds(230, 400, 135, 30);
-		panel.add(btnKontoAnlegen);
+		JButton btnKontoBearbeiten = new JButton("speichern");
+		btnKontoBearbeiten.setBounds(230, 400, 135, 30);
+		panel.add(btnKontoBearbeiten);
 		
 		//Objekte neu malen
 		panel.repaint();
+   }
+   
+   /**
+	 * Info Panel, zeigt Informationen zu Version und Authoren 
+	 * @author DMF
+	 */
+   public void infoPanel(){
+	   
+	   	//Entfernt alle zuvor hinzugefügten Objekte vom Panel
+	    panel.removeAll();
+	    
+	    //Logo laden
+	  	JLabel lblLogo = new JLabel();
+	  	lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
+	  	lblLogo.setBounds(200, 15, 215, 75);
+	  	panel.add(lblLogo);
+	    
+	    JLabel lblInfo = new JLabel("<html>test test test<p> test test </html>");
+	    lblInfo.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+	    lblInfo.setHorizontalAlignment(SwingConstants.CENTER);
+	    lblInfo.setBounds(SwingConstants.CENTER, SwingConstants.CENTER, 600, 500);
+	    panel.add(lblInfo);
+	    
+	    //Objekte neu malen
+	  	panel.repaint();
    }
 	
  }
