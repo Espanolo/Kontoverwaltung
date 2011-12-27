@@ -22,17 +22,14 @@ import javax.swing.JList;
 import javax.swing.AbstractListModel;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.AncestorEvent;
+import javax.swing.JComboBox;
+import java.awt.List;
 
 
 public class test extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtVorname;
-	private JTextField txtNachname;
-	private JTextField txtStra§e;
-	private JTextField txtPlz;
-	private JTextField txtOrt;
-	private JTextField txtKundennummer;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -54,113 +51,36 @@ public class test extends JFrame {
 	 * Create the frame.
 	 */
 	public test() {
+		getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
-		getContentPane().add(panel, BorderLayout.EAST);
-		panel.setLayout(null);
+		JTextArea textArea_1 = new JTextArea();
+		textArea_1.setBounds(354, 157, -231, 146);
+		getContentPane().add(textArea_1);
 		
-		txtVorname = new JTextField();
-		txtVorname.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		txtVorname.setBounds(310, 169, 134, 28);
-		panel.add(txtVorname);
-		txtVorname.setColumns(10);
+		JTextArea textArea = new JTextArea();
+		textArea.
+		textArea.setBounds(100, 62, 1, 16);
+		getContentPane().add(textArea);
+		getContentPane().setLayout(null);
 		
-		txtNachname = new JTextField();
-		txtNachname.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		txtNachname.setBounds(310, 197, 134, 28);
-		panel.add(txtNachname);
-		txtNachname.setColumns(10);
+		List list = new List();
+		list.setBounds(80, 51, 242, 204);
+		getContentPane().add(list);
+		list.add("Test");
+		list.add("Test");
+		list.add("Test");
+		list.add("Test");
+		list.add("Test");
+		list.add("Test");
+		list.add("Test");
+		list.set
+		list.add("Test");
+		list.add("Test");
+		list.add("Test");
+		list.add("Test");
+		list.add("Test");
+		list.add("Test");
 		
-		txtStra§e = new JTextField();
-		txtStra§e.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		txtStra§e.setBounds(310, 249, 134, 28);
-		panel.add(txtStra§e);
-		txtStra§e.setColumns(10);
-		
-		txtPlz = new JTextField();
-		txtPlz.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		txtPlz.setBounds(310, 277, 134, 28);
-		panel.add(txtPlz);
-		txtPlz.setColumns(10);
-		
-		txtOrt = new JTextField();
-		txtOrt.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		txtOrt.setBounds(310, 306, 134, 28);
-		panel.add(txtOrt);
-		txtOrt.setColumns(10);
-		
-		txtKundennummer = new JTextField();
-		txtKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		txtKundennummer.setBounds(310, 140, 134, 28);
-		panel.add(txtKundennummer);
-		txtKundennummer.setColumns(10);
-		
-		JLabel lblKundennummer = new JLabel("Kundennummer");
-		lblKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		lblKundennummer.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblKundennummer.setBounds(129, 146, 151, 16);
-		panel.add(lblKundennummer);
-		
-		JLabel lblVorname = new JLabel("Vorname");
-		lblVorname.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		lblVorname.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblVorname.setBounds(129, 175, 151, 16);
-		panel.add(lblVorname);
-		
-		JLabel lblNachname = new JLabel("Nachname");
-		lblNachname.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		lblNachname.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNachname.setBounds(129, 203, 151, 16);
-		panel.add(lblNachname);
-		
-		JLabel lblOrt = new JLabel("Ort");
-		lblOrt.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		lblOrt.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblOrt.setBounds(129, 312, 151, 16);
-		panel.add(lblOrt);
-		
-		JLabel lblPLZ = new JLabel("PLZ");
-		lblPLZ.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		lblPLZ.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblPLZ.setBounds(129, 283, 151, 16);
-		panel.add(lblPLZ);
-		
-		JLabel lblStrasse = new JLabel("Stra\u00DFe");
-		lblStrasse.setFont(new Font("KufiStandardGK", Font.PLAIN, 13));
-		lblStrasse.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblStrasse.setBounds(129, 255, 151, 16);
-		panel.add(lblStrasse);
-		
-		JSeparator sepOben = new JSeparator();
-		sepOben.setBackground(Color.BLACK);
-		sepOben.setBounds(55, 360, 490, 20);
-		panel.add(sepOben);
-		
-		JSeparator sepUnten = new JSeparator();
-		sepUnten.setBackground(Color.BLACK);
-		sepUnten.setBounds(55, 102, 490, 20);
-		panel.add(sepUnten);
-		
-		JLabel lab = new JLabel(new ImageIcon("LOGO.jpg"));
-		lab.setBounds(-11, 51, 300, 300);
-		panel.add(lab);
-		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
-		lblNewLabel.setBounds(200, 16, 214, 74);
-		panel.add(lblNewLabel);
-		
-		JButton btnKundenAnlegen = new JButton("anlegen");
-		btnKundenAnlegen.setBounds(231, 404, 134, 29);
-		panel.add(btnKundenAnlegen);
-		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Girokonto");
-		rdbtnNewRadioButton.setBounds(442, 140, 141, 23);
-		panel.add(rdbtnNewRadioButton);
-		
-		JLabel lblHallo = new JLabel("Test");
-		lblHallo.setVerticalAlignment(SwingConstants.TOP);
-		getContentPane().add(lblHallo, BorderLayout.CENTER);
 		
 	}
 }

@@ -2,10 +2,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class KontoverwaltungsFenster extends JFrame
 {
 		JPanel panel;
+		//Arraylisten für Kunden und Konten
+		ArrayList<Kunde> kundenListe= new ArrayList<Kunde>();
+		ArrayList<Konto> kontoListe= new ArrayList<Konto>();
+				
+		
 
    public KontoverwaltungsFenster()
    {
@@ -154,18 +160,18 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(lblKundenAnlegen);
 		
 		//Textfelder erstellen
-		JTextField txtKundennummer = new JTextField();
-	    JTextField txtVorname = new JTextField();
-	    JTextField txtNachname = new JTextField();
-	    JTextField txtStraße = new JTextField();
-	    JTextField txtPlz = new JTextField();
-	    JTextField txtOrt = new JTextField();
+		final JTextField txtKundennummer = new JTextField();
+	    final JTextField txtVorname = new JTextField();
+	    final JTextField txtNachname = new JTextField();
+	    final JTextField txtStrasse = new JTextField();
+	    final JTextField txtPlz = new JTextField();
+	    final JTextField txtOrt = new JTextField();
 	    
 	    //Schriftart und Größe festlegen
 	    txtKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		txtVorname.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		txtNachname.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
-		txtStraße.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		txtStrasse.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		txtPlz.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		txtOrt.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		
@@ -173,7 +179,7 @@ public class KontoverwaltungsFenster extends JFrame
 		txtKundennummer.setBounds(320, 140, 150, 25);
 		txtVorname.setBounds(320, 170, 150, 25);
 		txtNachname.setBounds(320, 200, 150, 25);
-		txtStraße.setBounds(320, 250, 150, 25);
+		txtStrasse.setBounds(320, 250, 150, 25);
 		txtPlz.setBounds(320, 280, 150, 25);
 		txtOrt.setBounds(320, 310, 150, 25);
 		
@@ -181,7 +187,7 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(txtKundennummer);
 		panel.add(txtVorname);
 		panel.add(txtNachname);
-		panel.add(txtStraße);
+		panel.add(txtStrasse);
 		panel.add(txtPlz);
 		panel.add(txtOrt);
 		
@@ -242,6 +248,35 @@ public class KontoverwaltungsFenster extends JFrame
 		btnKundenAnlegen.setBounds(230, 400, 135, 30);
 		panel.add(btnKundenAnlegen);
 		
+		txtKundennummer.setText(Integer.toString(GlobaleVariable.kundenNummer));
+		txtKundennummer.setEditable(false);
+		
+		//Actionlistener für KundenAnlegen
+		btnKundenAnlegen.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						Kunde kunde = new Kunde();
+						try	{	
+							kunde.kundeAnlegen(GlobaleVariable.kundenNummer, txtVorname.getText(), txtNachname.getText(), txtStrasse.getText(), Integer.parseInt(txtPlz.getText()) , txtOrt.getText());
+						} catch (NumberFormatException c) {
+							
+						}
+						//Textfelder neu setzen 
+						txtVorname.setText("");
+						txtNachname.setText("");
+						txtStrasse.setText("");
+						txtPlz.setText("");
+						txtOrt.setText("");
+						txtKundennummer.setText(Integer.toString(GlobaleVariable.kundenNummer));
+						
+						kundenListe.add(kunde);					
+						
+						//Debug
+						System.out.println(kunde.toString());
+					}
+				}
+		);
+		
 		//Objekte neu malen
 		panel.repaint();
    }
@@ -290,10 +325,11 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(lblNachname);
 		
 		//Liste für die Ausgabe der Kunden
-		JList list = new JList();
+		JList list = new JList(kundenListe.toArray());
 		list.setBounds(60, 150, 485, 200);
+		list.setFont(new Font("Monaco",Font.PLAIN,12));
 		panel.add(list);
-				
+		
 		//Separatoren für Oben und Unten 
 		JSeparator sepOben = new JSeparator();
 		JSeparator sepUnten = new JSeparator();
@@ -417,7 +453,7 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(sepUnten);
 		
 		//Kundenanlegen Button erstellen
-		JButton btnKundenAnlegen = new JButton("löschen");
+		JButton btnKundenAnlegen = new JButton("bearbeiten");
 		btnKundenAnlegen.setBounds(230, 400, 135, 30);
 		panel.add(btnKundenAnlegen);
 		
