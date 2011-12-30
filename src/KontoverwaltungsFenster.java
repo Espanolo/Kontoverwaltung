@@ -369,18 +369,18 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(lblKundenBearbeiten);
 
 		//Textfelder erstellen
-		JTextField txtKundennummer = new JTextField();
-	    JTextField txtVorname = new JTextField();
-	    JTextField txtNachname = new JTextField();
-	    JTextField txtStraße = new JTextField();
-	    JTextField txtPlz = new JTextField();
-	    JTextField txtOrt = new JTextField();
+		final JTextField txtKundennummer = new JTextField();
+	    final JTextField txtVorname = new JTextField();
+	    final JTextField txtNachname = new JTextField();
+	    final JTextField txtStrasse = new JTextField();
+	    final JTextField txtPlz = new JTextField();
+	    final JTextField txtOrt = new JTextField();
 	    
 	    //Schriftart und Größe festlegen
 	    txtKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		txtVorname.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		txtNachname.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
-		txtStraße.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		txtStrasse.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		txtPlz.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		txtOrt.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		
@@ -388,7 +388,7 @@ public class KontoverwaltungsFenster extends JFrame
 		txtKundennummer.setBounds(320, 140, 150, 25);
 		txtVorname.setBounds(320, 170, 150, 25);
 		txtNachname.setBounds(320, 200, 150, 25);
-		txtStraße.setBounds(320, 250, 150, 25);
+		txtStrasse.setBounds(320, 250, 150, 25);
 		txtPlz.setBounds(320, 280, 150, 25);
 		txtOrt.setBounds(320, 310, 150, 25);
 		
@@ -396,7 +396,7 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(txtKundennummer);
 		panel.add(txtVorname);
 		panel.add(txtNachname);
-		panel.add(txtStraße);
+		panel.add(txtStrasse);
 		panel.add(txtPlz);
 		panel.add(txtOrt);
 		
@@ -453,12 +453,54 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(sepUnten);
 		
 		//Kundenanlegen Button erstellen
-		JButton btnKundenAnlegen = new JButton("bearbeiten");
-		btnKundenAnlegen.setBounds(230, 400, 135, 30);
-		panel.add(btnKundenAnlegen);
+		final JButton btnKundenBearbeiten = new JButton("bearbeiten");
+		btnKundenBearbeiten.setBounds(230, 400, 135, 30);
+		panel.add(btnKundenBearbeiten);
+		btnKundenBearbeiten.setVisible(false);
 		
 		//Objekte neu malen
 		panel.repaint();
+	
+		//Actionlistner für die Suche nach dem Kunden
+		txtKundennummer.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+							for (Kunde kd : kundenListe)	
+								if (kd.getKundenNummer() == Integer.parseInt(txtKundennummer.getText())) {
+									txtVorname.setText(kd.getVorname());
+									txtNachname.setText(kd.getNachname());
+									txtStrasse.setText(kd.getStrasse());
+									txtPlz.setText(Integer.toString(kd.getPostleitzahl()));
+									txtOrt.setText(kd.getOrt());
+									
+									txtKundennummer.setEditable(false);
+									btnKundenBearbeiten.setVisible(true);
+								}
+						}
+				}
+		);
+		
+		btnKundenBearbeiten.addActionListener(
+				new ActionListener() {
+					public void actionPerformed(ActionEvent e){
+						for (Kunde kd : kundenListe)	
+							if (kd.getKundenNummer() == Integer.parseInt(txtKundennummer.getText())) {
+								//KundenBearbeiten Funtkion aufrufen
+								kd.kundeBearbeiten(txtVorname.getText(), txtNachname.getText(), txtStrasse.getText(), Integer.parseInt(txtPlz.getText()) , txtOrt.getText());
+								
+								//Textfelder neu setzen 
+								txtVorname.setText("");
+								txtNachname.setText("");
+								txtStrasse.setText("");
+								txtPlz.setText("");
+								txtOrt.setText("");
+								
+								txtKundennummer.setEditable(true);
+								btnKundenBearbeiten.setVisible(false);
+							}
+					}
+				}
+		);
    
    }
    
@@ -488,7 +530,7 @@ public class KontoverwaltungsFenster extends JFrame
 		JTextField txtKundennummer = new JTextField();
 	    JTextField txtVorname = new JTextField();
 	    JTextField txtNachname = new JTextField();
-	    JTextField txtStraße = new JTextField();
+	    JTextField txtStrasse = new JTextField();
 	    JTextField txtPlz = new JTextField();
 	    JTextField txtOrt = new JTextField();
 	    
@@ -496,7 +538,7 @@ public class KontoverwaltungsFenster extends JFrame
 	    txtKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		txtVorname.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		txtNachname.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
-		txtStraße.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
+		txtStrasse.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		txtPlz.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		txtOrt.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		
@@ -504,7 +546,7 @@ public class KontoverwaltungsFenster extends JFrame
 		txtKundennummer.setBounds(170, 140, 150, 25);
 		txtVorname.setBounds(170, 170, 150, 25);
 		txtNachname.setBounds(170, 200, 150, 25);
-		txtStraße.setBounds(170, 250, 150, 25);
+		txtStrasse.setBounds(170, 250, 150, 25);
 		txtPlz.setBounds(170, 280, 150, 25);
 		txtOrt.setBounds(170, 310, 150, 25);
 		
@@ -512,7 +554,7 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(txtKundennummer);
 		panel.add(txtVorname);
 		panel.add(txtNachname);
-		panel.add(txtStraße);
+		panel.add(txtStrasse);
 		panel.add(txtPlz);
 		panel.add(txtOrt);
 		
