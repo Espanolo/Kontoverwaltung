@@ -62,6 +62,8 @@ public class KontoverwaltungsFenster extends JFrame
 		customerMenu.add(editCustomer);
 		JMenuItem deleteCustomer = new JMenuItem("Kunde löschen");
 		customerMenu.add(deleteCustomer);
+		JMenuItem allAccounts = new JMenuItem("Kundenkonto anzeigen/bearbeiten/loeschen");
+		customerMenu.add(allAccounts);
 		
 		
 		//ActionListner für die Kunden Items hinzufügen
@@ -93,14 +95,19 @@ public class KontoverwaltungsFenster extends JFrame
 					}
 				}
 		);
+		allAccounts.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						alleKontenAnzeigenPanel();
+					}
+				}
+		);
 		
 		//Erstellt den MenüEintrag Konto mit allen nötigen Items
-		JMenu accoutMenu = new JMenu("Konto");
-		menuBar.add(accoutMenu);
-		JMenuItem newAccount = new JMenuItem("Neues Konto erstellen");
-		accoutMenu.add(newAccount);
-		JMenuItem allAccounts = new JMenuItem("Alle Konten anzeigen");
-		accoutMenu.add(allAccounts);
+		JMenu accountMenu = new JMenu("Konto");
+		menuBar.add(accountMenu);
+		JMenuItem newAccount = new JMenuItem("Konto erstellen");
+		accountMenu.add(newAccount);
 		
 		//ActionListner für die Konten Items hinzufügen
 		newAccount.addActionListener(
@@ -110,13 +117,7 @@ public class KontoverwaltungsFenster extends JFrame
 					}
 				}
 		);
-		allAccounts.addActionListener(
-				new ActionListener(){
-					public void actionPerformed(ActionEvent e){
-						alleKontenAnzeigenPanel();
-					}
-				}
-		);
+		
 		
 		//Info Menü
 		JMenu helpMenu = new JMenu("Hilfe");
@@ -255,24 +256,29 @@ public class KontoverwaltungsFenster extends JFrame
 		btnKundenAnlegen.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
-						Kunde kunde = new Kunde();
-						try	{	
-							kunde.kundeAnlegen(GlobaleVariable.kundenNummer, txtVorname.getText(), txtNachname.getText(), txtStrasse.getText(), Integer.parseInt(txtPlz.getText()) , txtOrt.getText());
-						} catch (NumberFormatException c) {
+						
+						if (txtVorname.getText().equals("") || txtNachname.getText().equals("") || txtOrt.getText().equals("") || txtPlz.getText().equals("") || txtStrasse.getText().equals(""))
+							JOptionPane.showMessageDialog(null, "Bitte alle Daten angeben!");
+						else {
+							Kunde kunde = new Kunde();
+							try	{	
+								kunde.kundeAnlegen(GlobaleVariable.kundenNummer, txtVorname.getText(), txtNachname.getText(), txtStrasse.getText(), Integer.parseInt(txtPlz.getText()) , txtOrt.getText());
+							} catch (NumberFormatException c) {
+								
+							}
+							//Textfelder neu setzen 
+							txtVorname.setText("");
+							txtNachname.setText("");
+							txtStrasse.setText("");
+							txtPlz.setText("");
+							txtOrt.setText("");
+							txtKundennummer.setText(Integer.toString(GlobaleVariable.kundenNummer));
 							
+							kundenListe.add(kunde);					
+							
+							//Debug
+							System.out.println(kunde.toString());
 						}
-						//Textfelder neu setzen 
-						txtVorname.setText("");
-						txtNachname.setText("");
-						txtStrasse.setText("");
-						txtPlz.setText("");
-						txtOrt.setText("");
-						txtKundennummer.setText(Integer.toString(GlobaleVariable.kundenNummer));
-						
-						kundenListe.add(kunde);					
-						
-						//Debug
-						System.out.println(kunde.toString());
 					}
 				}
 		);
@@ -484,19 +490,24 @@ public class KontoverwaltungsFenster extends JFrame
 				new ActionListener() {
 					public void actionPerformed(ActionEvent e){
 						for (Kunde kd : kundenListe)	
-							if (kd.getKundenNummer() == Integer.parseInt(txtKundennummer.getText())) {
-								//KundenBearbeiten Funtkion aufrufen
-								kd.kundeBearbeiten(txtVorname.getText(), txtNachname.getText(), txtStrasse.getText(), Integer.parseInt(txtPlz.getText()) , txtOrt.getText());
-								
-								//Textfelder neu setzen 
-								txtVorname.setText("");
-								txtNachname.setText("");
-								txtStrasse.setText("");
-								txtPlz.setText("");
-								txtOrt.setText("");
-								
-								txtKundennummer.setEditable(true);
-								btnKundenBearbeiten.setVisible(false);
+							if (txtVorname.getText().equals("") || txtNachname.getText().equals("") || txtOrt.getText().equals("") || txtPlz.getText().equals("") || txtStrasse.getText().equals(""))
+								JOptionPane.showMessageDialog(null, "Bitte alle Daten angeben!");
+							else {
+								if (kd.getKundenNummer() == Integer.parseInt(txtKundennummer.getText())) {
+									//KundenBearbeiten Funtkion aufrufen
+									kd.kundeBearbeiten(txtVorname.getText(), txtNachname.getText(), txtStrasse.getText(), Integer.parseInt(txtPlz.getText()) , txtOrt.getText());
+									
+									//Textfelder neu setzen 
+									txtVorname.setText("");
+									txtNachname.setText("");
+									txtStrasse.setText("");
+									txtPlz.setText("");
+									txtOrt.setText("");
+									
+									txtKundennummer.setEditable(true);
+									txtKundennummer.setText("");
+									btnKundenBearbeiten.setVisible(false);
+								}
 							}
 					}
 				}
@@ -507,6 +518,7 @@ public class KontoverwaltungsFenster extends JFrame
    /**
 	 * Kundenlöschen-Panel um Kunden zu löschen
 	 * @author DMF
+	 * @TODO Kontos löschen
 	 */	
    public void kundenLoeschenPanel(){
 	   
@@ -527,12 +539,12 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(lblKundenLoeschen);
 
 		//Textfelder erstellen
-		JTextField txtKundennummer = new JTextField();
-	    JTextField txtVorname = new JTextField();
-	    JTextField txtNachname = new JTextField();
-	    JTextField txtStrasse = new JTextField();
-	    JTextField txtPlz = new JTextField();
-	    JTextField txtOrt = new JTextField();
+		final JTextField txtKundennummer = new JTextField();
+	    final JTextField txtVorname = new JTextField();
+	    final JTextField txtNachname = new JTextField();
+	    final JTextField txtStrasse = new JTextField();
+	    final JTextField txtPlz = new JTextField();
+	    final JTextField txtOrt = new JTextField();
 	    
 	    //Schriftart und Größe festlegen
 	    txtKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
@@ -603,7 +615,8 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(lblZugehoerigeKonten);
 		
 		//Liste für die Ausgabe der Konten
-		JList list = new JList();
+		final DefaultListModel data = new DefaultListModel();
+		JList list = new JList(data);
 		list.setBounds(350, 170, 195, 165);
 		panel.add(list);
 				
@@ -620,12 +633,97 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(sepUnten);
 		
 		//Kundenanlegen Button erstellen
-		JButton btnKundeLoeschen = new JButton("löschen");
+		final JButton btnKundeLoeschen = new JButton("löschen");
 		btnKundeLoeschen.setBounds(230, 400, 135, 30);
 		panel.add(btnKundeLoeschen);
+		btnKundeLoeschen.setVisible(false);
 		
 		//Objekte neu malen
 		panel.repaint();
+		
+		//Actionlistner für die Suche nach dem Kunden
+		txtKundennummer.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+							for (Kunde kd : kundenListe)	
+								if (kd.getKundenNummer() == Integer.parseInt(txtKundennummer.getText())) {
+									txtVorname.setText(kd.getVorname());
+									txtNachname.setText(kd.getNachname());
+									txtStrasse.setText(kd.getStrasse());
+									txtPlz.setText(Integer.toString(kd.getPostleitzahl()));
+									txtOrt.setText(kd.getOrt());
+									
+									//Nach seinen Konten suchen
+									for (Konto kto : kontoListe) 
+										if ( kto.getKundenNummer() == kd.getKundenNummer())
+											data.addElement(kto.toStringShort());
+											
+									txtKundennummer.setEditable(false);
+									btnKundeLoeschen.setVisible(true);
+								}
+						}
+				}
+		);
+		
+		btnKundeLoeschen.addActionListener(
+				new ActionListener() {
+					public void actionPerformed(ActionEvent e){
+						//Liste leeren
+						data.removeAllElements();
+						
+						//Sicherheitsabfrage ob der Kunde, samt Konten wirklich gelöscht werden soll
+						int ok = JOptionPane.showConfirmDialog(null, "Wollen Sie diesen Kunden samt seinen Konten wirklich löschen?", "ACHTUNG", JOptionPane.YES_NO_OPTION);
+						
+						if (ok == JOptionPane.YES_OPTION) {
+							for (int i = 0; i < kundenListe.size(); i++) {	
+								if (kundenListe.get(i).getKundenNummer() == Integer.parseInt(txtKundennummer.getText())) {
+								
+									//Nach seinen Konten suchen und löschen
+									for (int o = 0; o < kontoListe.size(); o++) 
+										if ( kontoListe.get(o).getKundenNummer() == Integer.parseInt(txtKundennummer.getText())) {
+											kontoListe.remove(kontoListe.get(o));
+											o--;
+										}
+									
+									//Verweis auf den Kunden löschen und somit für GC freigeben
+									kundenListe.remove(kundenListe.get(i));
+									
+									//Textfelder und Liste neu setzen
+									txtKundennummer.setText("");
+									txtVorname.setText("");
+									txtNachname.setText("");
+									txtStrasse.setText("");
+									txtPlz.setText("");
+									txtOrt.setText("");
+									data.removeAllElements();
+									
+									txtKundennummer.setEditable(true);
+									btnKundeLoeschen.setVisible(false);
+									
+									//Debug
+									System.out.println(kundenListe.toString());
+									System.out.println(kontoListe.toString());
+								}
+							}
+						}
+						else {
+							//Textfelder und Liste neu setzen
+							txtKundennummer.setText("");
+							txtVorname.setText("");
+							txtNachname.setText("");
+							txtStrasse.setText("");
+							txtPlz.setText("");
+							txtOrt.setText("");
+							data.removeAllElements();
+							
+							txtKundennummer.setEditable(true);
+							btnKundeLoeschen.setVisible(false);
+						}
+							
+					}
+				}
+		);
+				
    }
    
    /**
@@ -651,9 +749,9 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(lblKontoLoeschen);
 
 		//Textfelder erstellen
-		JTextField txtKundennummer = new JTextField();
-	    JTextField txtKontonummer = new JTextField();
-	    JTextField txtKontostand = new JTextField();
+		final JTextField txtKundennummer = new JTextField();
+	    final JTextField txtKontonummer = new JTextField();
+	    final JTextField txtKontostand = new JTextField();
 	    
 	    //Schriftart und Größe festlegen
 	    txtKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
@@ -706,8 +804,16 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(lblEur);
 		
 		//RadioButtons für die Auswahl erstellen, positionieren und hinzufügen
-		JRadioButton rdbtnGirokonto = new JRadioButton("Girokonto");
+		final JRadioButton rdbtnGirokonto = new JRadioButton("Girokonto");
 		JRadioButton rdbtnSparkonto = new JRadioButton("Sparkonto");
+		
+		//Radiobuttons gruppieren
+		ButtonGroup group = new ButtonGroup();
+	    group.add(rdbtnGirokonto);
+	    group.add(rdbtnSparkonto);
+	    
+	    //Initiale Auswahl treffen
+	    rdbtnGirokonto.setSelected(true);
 		
 		rdbtnGirokonto.setBounds(320, 200, 141, 23);
 		rdbtnSparkonto.setBounds(320, 220, 141, 23);
@@ -734,10 +840,67 @@ public class KontoverwaltungsFenster extends JFrame
 		
 		//Objekte neu malen
 		panel.repaint();
+		
+		txtKontonummer.setText(Integer.toString(GlobaleVariable.kontoNummer));
+		txtKontonummer.setEditable(false);	
+		txtKontostand.setText("0");
+		
+	
+		
+		btnKontoAnlegen.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						
+						//Leere Eingabe abfragen
+						if (txtKundennummer.getText().equals(""))
+							JOptionPane.showMessageDialog(null, "Kundennummer eingeben!");
+						else {
+							//Eingegebene Kundennummer überprüfen ob vorhanden
+							boolean kdnrGefunden=false;
+							
+							for (Kunde kd : kundenListe) {
+								if (kd.getKundenNummer() == Integer.parseInt(txtKundennummer.getText()))
+									kdnrGefunden=true;
+							}
+							
+							if (kdnrGefunden == false) {
+								JOptionPane.showMessageDialog(null, "Kundennummer existiert nicht!");
+								txtKundennummer.setText("");
+							}
+							else {
+								//Konto Objekt erstellen
+								Konto konto = new Konto();
+								
+								//KontoArt bestimmen
+								String kontoArt;
+								if (true == rdbtnGirokonto.isSelected())
+									kontoArt = "Girokonto";
+								else
+									kontoArt = "Sparkonto";
+								
+								try	{	
+									konto.neuesKonto(GlobaleVariable.kontoNummer, Integer.parseInt(txtKundennummer.getText()), kontoArt, Integer.parseInt(txtKontostand.getText()));
+								} catch (NumberFormatException c) {
+									
+								}
+								//Textfelder neu setzen 
+								txtKontostand.setText("0");
+								txtKundennummer.setText("");
+								txtKontonummer.setText(Integer.toString(GlobaleVariable.kontoNummer));
+								
+								kontoListe.add(konto);					
+								
+								//Debug
+								System.out.println(konto.toString());
+							}
+						}
+					}
+				}
+		);
    }
    
    /**
-	 * Kontenanzeigen-Panel um alle Konten anzuzeigen
+	 * Kontenanzeigen-Panel um alle Konten anzuzeigen/bearbeiten/loeschen
 	 * @author DMF
 	 */	
    public void alleKontenAnzeigenPanel(){
@@ -753,15 +916,15 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(lblLogo);
 		
 		//Info Label erstellen
-		JLabel lblKontenAnzeigen = new JLabel("Konten anzeigen");
+		JLabel lblKontenAnzeigen = new JLabel("<html>Kundenkonto anzeigen/<p>bearbeiten/<p>loeschen<p></html>");
 		lblKontenAnzeigen.setFont(new Font("KufiStandardGK", Font.BOLD, 20));
-		lblKontenAnzeigen.setBounds(340, 75, 200, 16);
+		lblKontenAnzeigen.setBounds(310, 15, 250, 86);
 		panel.add(lblKontenAnzeigen);
 
 		//Textfelder erstellen
-		JTextField txtKundennummer = new JTextField();
-	    JTextField txtVorname = new JTextField();
-	    JTextField txtNachname = new JTextField();
+		final JTextField txtKundennummer = new JTextField();
+	    final JTextField txtVorname = new JTextField();
+	    final JTextField txtNachname = new JTextField();
 	    
 	    //Schriftart und Größe festlegen
 	    txtKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
@@ -816,7 +979,8 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(lblKontostand);
 		
 		//Liste für die Ausgabe der Konten
-		JList list = new JList();
+		final DefaultListModel data = new DefaultListModel();
+		JList list = new JList(data);
 		list.setBounds(60, 250, 485, 100);
 		panel.add(list);
 
@@ -834,6 +998,27 @@ public class KontoverwaltungsFenster extends JFrame
 		
 		//Objekte neu malen
 		panel.repaint();
+		
+		txtVorname.setEditable(false);
+		txtNachname.setEditable(false);
+		
+		txtKundennummer.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+							//Nach Kunde suchen
+							for (Kunde kd : kundenListe)	
+								if (kd.getKundenNummer() == Integer.parseInt(txtKundennummer.getText())) {
+									txtVorname.setText(kd.getVorname());
+									txtNachname.setText(kd.getNachname());
+									
+									//Nach seinen Konten suchen
+									for (Konto kto : kontoListe) 
+										if ( kto.getKundenNummer() == kd.getKundenNummer())
+											data.addElement(kto.toString());
+								}
+						}
+				}
+		);
    }
    
    /**
@@ -935,13 +1120,15 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(sepOben);
 		panel.add(sepUnten);
 		
-		//Kontoanlegen Button hinzufügen
+		//KontoBearbeiten Button hinzufügen
 		JButton btnKontoBearbeiten = new JButton("speichern");
 		btnKontoBearbeiten.setBounds(230, 400, 135, 30);
 		panel.add(btnKontoBearbeiten);
 		
 		//Objekte neu malen
 		panel.repaint();
+		
+		
    }
    
    /**

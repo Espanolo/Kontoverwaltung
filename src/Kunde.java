@@ -24,26 +24,6 @@ public class Kunde {
 		GlobaleVariable.kundenNummer++;
 		
 	}
-	/**
-	 * TODO: Kunde bearbeiten
-	 * @author DMF
-	 */
-	public void kundeBearbeiten(String vorname, String nachname, String strasse, int postleitzahl, String ort){
-		this.vorname = vorname;
-		this.nachname = nachname;
-		this.strasse = strasse;
-		this.postleitzahl = postleitzahl;
-		this.ort = ort;
-		
-	}
-	/**
-	 * TODO: Kunde lšschen
-	 * @author DMF
-	 */
-	public void kundeLoeschen(int kundenNummer){
-		
-		
-	}
 	//Getter
 	public int getKundenNummer(){
 		return kundenNummer;
@@ -63,7 +43,18 @@ public class Kunde {
 	public String getOrt(){
 		return ort;
 	}
-	
+	/**
+	 * TODO: Kunde bearbeiten
+	 * @author DMF
+	 */
+	public void kundeBearbeiten(String vorname, String nachname, String strasse, int postleitzahl, String ort){
+		this.vorname = vorname;
+		this.nachname = nachname;
+		this.strasse = strasse;
+		this.postleitzahl = postleitzahl;
+		this.ort = ort;
+		
+	}	
 	/**
 	 * ToString Ÿberschrieben, um bei der Ausgabe die richtige Breite zwischen den Variablen zu bekommen
 	 * @author DMF
