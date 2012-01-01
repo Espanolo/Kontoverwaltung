@@ -8,8 +8,8 @@ public class KontoverwaltungsFenster extends JFrame
 {
 		JPanel panel;
 		//Arraylisten für Kunden und Konten
-		ArrayList<Kunde> kundenListe= new ArrayList<Kunde>();
-		ArrayList<Konto> kontoListe= new ArrayList<Konto>();
+		public static ArrayList<Kunde> kundenListe= new ArrayList<Kunde>();
+		public static ArrayList<Konto> kontoListe= new ArrayList<Konto>();
 				
 		
 
@@ -24,6 +24,7 @@ public class KontoverwaltungsFenster extends JFrame
        panel = new JPanel();
        panel.setLayout(null);
        super.add(panel); 
+       addWindowListener( new FensterSchließenAdapter() );
   
        //Logo laden
      	JLabel lblLogo = new JLabel();
@@ -46,7 +47,8 @@ public class KontoverwaltungsFenster extends JFrame
 		close.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
-						System.exit(0);
+						FensterSchließenAdapter exit = new FensterSchließenAdapter();
+						exit.windowClosing(null);
 					}
 				}
 		);
@@ -915,6 +917,20 @@ public class KontoverwaltungsFenster extends JFrame
 		lblLogo.setBounds(55, 15, 215, 75);
 		panel.add(lblLogo);
 		
+		//Icons mit Buttons laden 
+		JButton btnBearbeiten = new JButton();
+		JButton btnLoeschen = new JButton();
+		
+		btnBearbeiten.setIcon(new ImageIcon(test.class.getResource("/icon/stift.gif")));
+		btnLoeschen.setIcon(new ImageIcon(test.class.getResource("/icon/delete.png")));
+		
+		btnBearbeiten.setBounds(490, 250, 50, 50);
+		btnLoeschen.setBounds(490, 300, 50, 50);
+		
+		panel.add(btnBearbeiten);
+		panel.add(btnLoeschen);
+		
+		
 		//Info Label erstellen
 		JLabel lblKontenAnzeigen = new JLabel("<html>Kundenkonto anzeigen/<p>bearbeiten/<p>loeschen<p></html>");
 		lblKontenAnzeigen.setFont(new Font("KufiStandardGK", Font.BOLD, 20));
@@ -967,8 +983,8 @@ public class KontoverwaltungsFenster extends JFrame
 		lblVorname.setBounds(150, 175, 150, 16);
 		lblNachname.setBounds(150, 205, 150, 16);
 		lblKontonummer.setBounds(60, 230, 150, 16);
-		lblKontoart.setBounds(290, 230, 150, 16);
-		lblKontostand.setBounds(470, 230, 150, 16);
+		lblKontoart.setBounds(208, 230, 150, 16);
+		lblKontostand.setBounds(334, 230, 150, 16);
 		
 		//Labels zum Panel hinzufügen
 		panel.add(lblKundennummer);
@@ -981,7 +997,7 @@ public class KontoverwaltungsFenster extends JFrame
 		//Liste für die Ausgabe der Konten
 		final DefaultListModel data = new DefaultListModel();
 		JList list = new JList(data);
-		list.setBounds(60, 250, 485, 100);
+		list.setBounds(60, 250, 405, 100);
 		panel.add(list);
 
 		//Separatoren für Oben und Unten 
@@ -1155,5 +1171,4 @@ public class KontoverwaltungsFenster extends JFrame
 	    //Objekte neu malen
 	  	panel.repaint();
    }
-	
  }

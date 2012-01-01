@@ -47,6 +47,15 @@ public class Konto{
 	public void kontoLoeschen(int kontoNummer){ 
 		
 	}
+	
+	public String getData(){
+		String i = "" +kontoNummer
+		+";;"+ kundenNummer
+		+";;"+ kontoArt 
+		+";;"+ kontoStand
+		+"\r\n";
+		return i;
+	}
 	/**
 	 * ToString überschrieben, um bei der Ausgabe die richtige Breite zwischen den Variablen zu bekommen
 	 * @author DMF

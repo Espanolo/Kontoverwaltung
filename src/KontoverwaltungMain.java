@@ -9,9 +9,6 @@
 
 
 public class KontoverwaltungMain {
-
-	
-	//static JFrame mainWindow = new JFrame("Kontoverwaltung");
 	
 	 
 	/**

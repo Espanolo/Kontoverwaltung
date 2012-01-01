@@ -51,6 +51,16 @@ public class test extends JFrame {
 	 * Create the frame.
 	 */
 	public test() {
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setIcon(new ImageIcon(test.class.getResource("/icon/stift.gif")));
+		getContentPane().add(btnNewButton, BorderLayout.CENTER);
+		getContentPane().setLayout(null);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setIcon(new ImageIcon(test.class.getResource("/icon/view.png")));
+		btnNewButton.setBounds(23, 133, 117, 79);
+		getContentPane().add(btnNewButton);
 		getContentPane().setLayout(null);
 		
 		JTextArea textArea_1 = new JTextArea();

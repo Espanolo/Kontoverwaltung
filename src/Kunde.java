@@ -53,8 +53,17 @@ public class Kunde {
 		this.strasse = strasse;
 		this.postleitzahl = postleitzahl;
 		this.ort = ort;
-		
 	}	
+	public String getData(){
+		String i = ""+kundenNummer
+		+";;"+ vorname
+		+";;"+ nachname
+		+";;"+ strasse
+		+";;"+ postleitzahl 
+		+";;"+ ort
+		+"\r\n";
+		return i;
+	}
 	/**
 	 * ToString Ÿberschrieben, um bei der Ausgabe die richtige Breite zwischen den Variablen zu bekommen
 	 * @author DMF
