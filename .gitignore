@@ -19,7 +19,6 @@
 ######################
 .DS_Store*
 .classpath
-.project
 .settings
 ehthumbs.db
 Icon?
