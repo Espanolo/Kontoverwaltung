@@ -1,8 +1,11 @@
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.awt.Robot;
 
 public class KontoverwaltungsFenster extends JFrame
 {
@@ -100,7 +103,7 @@ public class KontoverwaltungsFenster extends JFrame
 		allAccounts.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
-						alleKontenAnzeigenPanel();
+						alleKontenAnzeigenPanel(0);
 					}
 				}
 		);
@@ -745,10 +748,10 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(lblLogo);
 		
 		//Info Label erstellen
-		JLabel lblKontoLoeschen = new JLabel("Konto anlegen");
-		lblKontoLoeschen.setFont(new Font("KufiStandardGK", Font.BOLD, 20));
-		lblKontoLoeschen.setBounds(340, 75, 200, 16);
-		panel.add(lblKontoLoeschen);
+		JLabel lblKontoAnlegen = new JLabel("Konto anlegen");
+		lblKontoAnlegen.setFont(new Font("KufiStandardGK", Font.BOLD, 20));
+		lblKontoAnlegen.setBounds(340, 75, 200, 16);
+		panel.add(lblKontoAnlegen);
 
 		//Textfelder erstellen
 		final JTextField txtKundennummer = new JTextField();
@@ -905,12 +908,14 @@ public class KontoverwaltungsFenster extends JFrame
 	 * Kontenanzeigen-Panel um alle Konten anzuzeigen/bearbeiten/loeschen
 	 * @author DMF
 	 */	
-   public void alleKontenAnzeigenPanel(){
-	   	
+   public void alleKontenAnzeigenPanel(int kundenNummer){
 	   
 	   	//Entfernt alle zuvor hinzugefügten Objekte vom Panel
 	    panel.removeAll();
-
+	    
+	    //Zwichenergebnis KontoListe
+	  	final ArrayList<Konto> hilfsKontoListe = new ArrayList<Konto>();
+	  		
 		//Logo laden
 		JLabel lblLogo = new JLabel();
 		lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
@@ -996,8 +1001,9 @@ public class KontoverwaltungsFenster extends JFrame
 		
 		//Liste für die Ausgabe der Konten
 		final DefaultListModel data = new DefaultListModel();
-		JList list = new JList(data);
+		final JList list = new JList(data);
 		list.setBounds(60, 250, 405, 100);
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		panel.add(list);
 
 		//Separatoren für Oben und Unten 
@@ -1012,27 +1018,74 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(sepOben);
 		panel.add(sepUnten);
 		
+		if (kundenNummer != 0) 
+	   		txtKundennummer.setText(Integer.toString(kundenNummer));
+		txtKundennummer.requestFocus();
+		
+		
+		try {
+			Robot robot = new Robot();
+			robot.keyPress(KeyEvent.VK_ENTER);
+
+		} catch (AWTException e1) {
+			
+		}
+		
 		//Objekte neu malen
 		panel.repaint();
 		
 		txtVorname.setEditable(false);
 		txtNachname.setEditable(false);
 		
+		//Actionlistener für Kundensuche
 		txtKundennummer.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
-							//Nach Kunde suchen
-							for (Kunde kd : kundenListe)	
-								if (kd.getKundenNummer() == Integer.parseInt(txtKundennummer.getText())) {
-									txtVorname.setText(kd.getVorname());
-									txtNachname.setText(kd.getNachname());
-									
-									//Nach seinen Konten suchen
-									for (Konto kto : kontoListe) 
-										if ( kto.getKundenNummer() == kd.getKundenNummer())
-											data.addElement(kto.toString());
-								}
+							hilfsKontoListe.clear();
+							if (!txtKundennummer.getText().equals("")) {
+								//Nach Kunde suchen
+								for (Kunde kd : kundenListe)	
+									if (kd.getKundenNummer() == Integer.parseInt(txtKundennummer.getText())) {
+										txtVorname.setText(kd.getVorname());
+										txtNachname.setText(kd.getNachname());
+										
+										//Nach seinen Konten suchen
+										for (Konto kto : kontoListe) 
+											if ( kto.getKundenNummer() == kd.getKundenNummer()) {
+												data.addElement(kto.toString());
+												hilfsKontoListe.add(kto);
+											}
+									}
+							}	
+					}
+				}
+		);
+		
+		//Actionlistener für btnBearbeiten
+		btnBearbeiten.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e) {
+						if (!list.isSelectionEmpty()) {
+							int i = list.getSelectedIndex();
+							
+							kontoBearbeitenPanel(hilfsKontoListe.get(i));
 						}
+							
+					}
+				}
+		);
+		
+		//Actionlistener für btnLoeschen
+		btnLoeschen.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e) {
+						if (!list.isSelectionEmpty()) {
+							int i = list.getSelectedIndex();
+						    kontoListe.remove(i);
+							alleKontenAnzeigenPanel(Integer.parseInt(txtKundennummer.getText()));
+
+						}				
+					}
 				}
 		);
    }
@@ -1041,7 +1094,7 @@ public class KontoverwaltungsFenster extends JFrame
 	 * Kontobearbeiten-Panel um Konten zu bearbeiten
 	 * @author DMF
 	 */
-   public void kontoBearbeitenPanel(){
+   public void kontoBearbeitenPanel(final Konto kto){
 	    
 	   
 	    //Entfernt alle zuvor hinzugefügten Objekte vom Panel
@@ -1062,7 +1115,7 @@ public class KontoverwaltungsFenster extends JFrame
 		//Textfelder erstellen
 		JTextField txtKundennummer = new JTextField();
 	    JTextField txtKontonummer = new JTextField();
-	    JTextField txtKontostand = new JTextField();
+	    final JTextField txtKontostand = new JTextField();
 	    
 	    //Schriftart und Größe festlegen
 	    txtKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
@@ -1115,14 +1168,18 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(lblEur);
 		
 		//RadioButtons für die Auswahl erstellen, positionieren und hinzufügen
-		JRadioButton rdbtnGirokonto = new JRadioButton("Girokonto");
+		final JRadioButton rdbtnGirokonto = new JRadioButton("Girokonto");
 		JRadioButton rdbtnSparkonto = new JRadioButton("Sparkonto");
+		
+		//Radiobuttons gruppieren
+		ButtonGroup group = new ButtonGroup();
+		group.add(rdbtnGirokonto);
+		group.add(rdbtnSparkonto);
 		
 		rdbtnGirokonto.setBounds(320, 200, 141, 23);
 		rdbtnSparkonto.setBounds(320, 220, 141, 23);
 		
-		panel.add(rdbtnGirokonto);
-		panel.add(rdbtnSparkonto);
+		
 		
 		//Separatoren für Oben und Unten 
 		JSeparator sepOben = new JSeparator();
@@ -1144,7 +1201,42 @@ public class KontoverwaltungsFenster extends JFrame
 		//Objekte neu malen
 		panel.repaint();
 		
+		//Übergebens Konto darstellen
+		txtKundennummer.setText(Integer.toString(kto.getKundenNummer()));
+		txtKontonummer.setText(Integer.toString(kto.getkontoNummer()));
+		if (kto.getKontoArt().equals("Girokonto"))
+			rdbtnGirokonto.setSelected(true);
+		else
+			rdbtnSparkonto.setSelected(true);
 		
+		panel.add(rdbtnGirokonto);
+		panel.add(rdbtnSparkonto);
+		
+		txtKontostand.setText(Double.toString(kto.getkontoStand()));
+		
+		//Nicht-änderbare TextFelder 
+		txtKontonummer.setEditable(false);
+		txtKundennummer.setEditable(false);
+		
+		
+		btnKontoBearbeiten.addActionListener(
+				new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						//KontoArt bestimmen
+						String kontoArt;
+						if (true == rdbtnGirokonto.isSelected())
+							kontoArt = "Girokonto";
+						else
+							kontoArt = "Sparkonto";
+						
+						//KontoBearbeiten Funktion aufrufen und neue Werte abspeichern
+						kto.kontoBearbeiten(kontoArt, Double.parseDouble(txtKontostand.getText()));
+						
+						//Altes Panel wieder starten
+						alleKontenAnzeigenPanel(kto.getKundenNummer());
+					}
+				}
+		);
    }
    
    /**
@@ -1162,7 +1254,7 @@ public class KontoverwaltungsFenster extends JFrame
 	  	lblLogo.setBounds(200, 15, 215, 75);
 	  	panel.add(lblLogo);
 	    
-	    JLabel lblInfo = new JLabel("<html>test test test<p> test test </html>");
+	    JLabel lblInfo = new JLabel("<html><center>Autoren:<p><p> Dennis Morales Flores <p> Markus Mayer <p> Marco Rubin</center></html>");
 	    lblInfo.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 	    lblInfo.setHorizontalAlignment(SwingConstants.CENTER);
 	    lblInfo.setBounds(SwingConstants.CENTER, SwingConstants.CENTER, 600, 500);

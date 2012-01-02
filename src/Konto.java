@@ -32,20 +32,17 @@ public class Konto{
 	public double getkontoStand(){
 		return kontoStand;
 	}
+	public String getKontoArt(){
+		return kontoArt;
+	}
 
 	/**
 	 * TODO: Konto bearbeiten
 	 * @author DMF
 	 */
-	public void kontoBearbeiten(int kontoNummer){ 
-		 
-	}
-	/**
-	 * TODO: Kontolöschen 
-	 * @author DMF
-	 */
-	public void kontoLoeschen(int kontoNummer){ 
-		
+	public void kontoBearbeiten(String kontoArt, double kontoStand){ 
+		 this.kontoArt = kontoArt;
+		 this.kontoStand = kontoStand;
 	}
 	
 	public String getData(){
