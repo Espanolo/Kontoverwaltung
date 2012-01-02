@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.awt.Robot;
 
@@ -757,7 +759,7 @@ public class KontoverwaltungsFenster extends JFrame
 		//Textfelder erstellen
 		final JTextField txtKundennummer = new JTextField();
 	    final JTextField txtKontonummer = new JTextField();
-	    final JTextField txtKontostand = new JTextField();
+	    final JFormattedTextField txtKontostand = new JFormattedTextField(new DecimalFormat("0.##"));
 	    
 	    //Schriftart und Grš§e festlegen
 	    txtKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
@@ -885,9 +887,9 @@ public class KontoverwaltungsFenster extends JFrame
 									kontoArt = "Sparkonto";
 								
 								try	{	
-									konto.neuesKonto(GlobaleVariable.kontoNummer, Integer.parseInt(txtKundennummer.getText()), kontoArt, Integer.parseInt(txtKontostand.getText()));
+									konto.neuesKonto(GlobaleVariable.kontoNummer, Integer.parseInt(txtKundennummer.getText()), kontoArt, ((Number)txtKontostand.getValue()).doubleValue() );
 								} catch (NumberFormatException c) {
-									
+									System.out.println(c.getMessage());
 								}
 								//Textfelder neu setzen 
 								txtKontostand.setText("0");
@@ -1096,7 +1098,7 @@ public class KontoverwaltungsFenster extends JFrame
    }
    
    /**
-	 * Kontobearbeiten-Panel um Konten zu bearbeiten
+	 * Bearbeiten-Panel um Konten zu bearbeiten
 	 * @author DMF
 	 */
    public void kontoBearbeitenPanel(final Konto kto){
@@ -1120,7 +1122,7 @@ public class KontoverwaltungsFenster extends JFrame
 		//Textfelder erstellen
 		JTextField txtKundennummer = new JTextField();
 	    JTextField txtKontonummer = new JTextField();
-	    final JTextField txtKontostand = new JTextField();
+	    final JFormattedTextField txtKontostand = new JFormattedTextField(new DecimalFormat("0.##"));
 	    
 	    //Schriftart und Grš§e festlegen
 	    txtKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
@@ -1235,7 +1237,7 @@ public class KontoverwaltungsFenster extends JFrame
 							kontoArt = "Sparkonto";
 						
 						//KontoBearbeiten Funktion aufrufen und neue Werte abspeichern
-						kto.kontoBearbeiten(kontoArt, Double.parseDouble(txtKontostand.getText()));
+						kto.kontoBearbeiten(kontoArt, ((Number)txtKontostand.getValue()).doubleValue());
 						
 						//Altes Panel wieder starten
 						alleKontenAnzeigenPanel(kto.getKundenNummer());
