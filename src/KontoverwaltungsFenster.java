@@ -7,12 +7,13 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.awt.Robot;
 
+@SuppressWarnings("serial")
 public class KontoverwaltungsFenster extends JFrame
 {
-		JPanel panel;
-		//Arraylisten für Kunden und Konten
-		public static ArrayList<Kunde> kundenListe= new ArrayList<Kunde>();
-		public static ArrayList<Konto> kontoListe= new ArrayList<Konto>();
+	JPanel panel;
+	//Arraylisten für Kunden und Konten
+	public static ArrayList<Kunde> kundenListe= new ArrayList<Kunde>();
+	public static ArrayList<Konto> kontoListe= new ArrayList<Konto>();
 				
 		
 
@@ -31,7 +32,7 @@ public class KontoverwaltungsFenster extends JFrame
   
        //Logo laden
      	JLabel lblLogo = new JLabel();
-     	lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
+     	lblLogo.setIcon(new ImageIcon(KontoverwaltungsFenster.class.getResource("/pic/LOGO.jpg")));
    		lblLogo.setBounds(300-107,250-75, 215, 75);
    		panel.add(lblLogo);
        
@@ -155,7 +156,7 @@ public class KontoverwaltungsFenster extends JFrame
 
 		//Logo laden
 		JLabel lblLogo = new JLabel();
-		lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
+		lblLogo.setIcon(new ImageIcon(KontoverwaltungsFenster.class.getResource("/pic/LOGO.jpg")));
 		lblLogo.setBounds(55, 15, 215, 75);
 		panel.add(lblLogo);
 		
@@ -304,7 +305,7 @@ public class KontoverwaltungsFenster extends JFrame
 
 		//Logo laden
 		JLabel lblLogo = new JLabel();
-		lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
+		lblLogo.setIcon(new ImageIcon(KontoverwaltungsFenster.class.getResource("/pic/LOGO.jpg")));
 		lblLogo.setBounds(55, 15, 215, 75);
 		panel.add(lblLogo);
 		
@@ -369,7 +370,7 @@ public class KontoverwaltungsFenster extends JFrame
 
 		//Logo laden
 		JLabel lblLogo = new JLabel();
-		lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
+		lblLogo.setIcon(new ImageIcon(KontoverwaltungsFenster.class.getResource("/pic/LOGO.jpg")));
 		lblLogo.setBounds(55, 15, 215, 75);
 		panel.add(lblLogo);
 		
@@ -533,7 +534,7 @@ public class KontoverwaltungsFenster extends JFrame
 
 		//Logo laden
 		JLabel lblLogo = new JLabel();
-		lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
+		lblLogo.setIcon(new ImageIcon(KontoverwaltungsFenster.class.getResource("/pic/LOGO.jpg")));
 		lblLogo.setBounds(55, 15, 215, 75);
 		panel.add(lblLogo);
 		
@@ -743,7 +744,7 @@ public class KontoverwaltungsFenster extends JFrame
 	   
 		//Logo laden
 		JLabel lblLogo = new JLabel();
-		lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
+		lblLogo.setIcon(new ImageIcon(KontoverwaltungsFenster.class.getResource("/pic/LOGO.jpg")));
 		lblLogo.setBounds(55, 15, 215, 75);
 		panel.add(lblLogo);
 		
@@ -918,7 +919,7 @@ public class KontoverwaltungsFenster extends JFrame
 	  		
 		//Logo laden
 		JLabel lblLogo = new JLabel();
-		lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
+		lblLogo.setIcon(new ImageIcon(KontoverwaltungsFenster.class.getResource("/pic/LOGO.jpg")));
 		lblLogo.setBounds(55, 15, 215, 75);
 		panel.add(lblLogo);
 		
@@ -926,8 +927,8 @@ public class KontoverwaltungsFenster extends JFrame
 		JButton btnBearbeiten = new JButton();
 		JButton btnLoeschen = new JButton();
 		
-		btnBearbeiten.setIcon(new ImageIcon(test.class.getResource("/icon/stift.gif")));
-		btnLoeschen.setIcon(new ImageIcon(test.class.getResource("/icon/delete.png")));
+		btnBearbeiten.setIcon(new ImageIcon(KontoverwaltungsFenster.class.getResource("/icon/stift.gif")));
+		btnLoeschen.setIcon(new ImageIcon(KontoverwaltungsFenster.class.getResource("/icon/delete.png")));
 		
 		btnBearbeiten.setBounds(490, 250, 50, 50);
 		btnLoeschen.setBounds(490, 300, 50, 50);
@@ -1041,7 +1042,10 @@ public class KontoverwaltungsFenster extends JFrame
 		txtKundennummer.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
+							//Clear
 							hilfsKontoListe.clear();
+							data.removeAllElements();
+							
 							if (!txtKundennummer.getText().equals("")) {
 								//Nach Kunde suchen
 								for (Kunde kd : kundenListe)	
@@ -1081,7 +1085,8 @@ public class KontoverwaltungsFenster extends JFrame
 					public void actionPerformed(ActionEvent e) {
 						if (!list.isSelectionEmpty()) {
 							int i = list.getSelectedIndex();
-						    kontoListe.remove(i);
+						    kontoListe.remove(hilfsKontoListe.get(i));
+							//hilfsKontoListe.remove(i);
 							alleKontenAnzeigenPanel(Integer.parseInt(txtKundennummer.getText()));
 
 						}				
@@ -1102,7 +1107,7 @@ public class KontoverwaltungsFenster extends JFrame
 	   
 		//Logo laden
 		JLabel lblLogo = new JLabel();
-		lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
+		lblLogo.setIcon(new ImageIcon(KontoverwaltungsFenster.class.getResource("/pic/LOGO.jpg")));
 		lblLogo.setBounds(55, 15, 215, 75);
 		panel.add(lblLogo);
 		
@@ -1250,7 +1255,7 @@ public class KontoverwaltungsFenster extends JFrame
 	    
 	    //Logo laden
 	  	JLabel lblLogo = new JLabel();
-	  	lblLogo.setIcon(new ImageIcon(test.class.getResource("/pic/LOGO.jpg")));
+	  	lblLogo.setIcon(new ImageIcon(KontoverwaltungsFenster.class.getResource("/pic/LOGO.jpg")));
 	  	lblLogo.setBounds(200, 15, 215, 75);
 	  	panel.add(lblLogo);
 	    

@@ -17,6 +17,7 @@ public class KontoverwaltungMain {
 	 * 
 	 * @author DMF
 	 */
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		
 		/**
