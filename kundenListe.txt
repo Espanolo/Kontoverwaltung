@@ -2,9 +2,9 @@
 1001;;Markus;;Mayer;;Stephan Str. 12;;40876;;Friedrichs
 1002;;Marco;;Rubin;;Alexander Weg 5;;60278;;Frankfurt
 1003;;Daniel;;Heine;;Zeppelingweg 3;;30147;;Ginnheim
-1004;;Sören;;Rieder;;Filipe Str. 97;;20987;;Mannheim
+1004;;Sren;;Rieder;;Filipe Str. 97;;20987;;Mannheim
 1005;;Filipo;;Finne;;Igner Allee 25;;79539;;Stuttgart
 1006;;Anne;;Hamster;;Ebert Gasse 79;;30915;;Wiesbaden
 1007;;Franzi;;Berger;;Weger Str. 2;;38490;;Berlin
-1008;;Hans;;Peter Joachim;;Wölbert Str. 90;;11993;;Rostock
+1008;;Hans;;Peter Joachim;;Wlbert Str. 90;;11993;;Rostock
 1009;;Julia;;Jens;;Quer Str. 1;;3481;;Kiel

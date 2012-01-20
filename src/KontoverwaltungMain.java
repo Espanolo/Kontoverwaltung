@@ -1,4 +1,5 @@
 
+
 	/**
 	 * Java Projekt WS11
 	 * Kontoverwaltungsprogramm
@@ -25,5 +26,6 @@ public class KontoverwaltungMain {
 		 * @author DMF
 		 */
 		KontoverwaltungsFenster mainWindow = new KontoverwaltungsFenster();
+		
 	}
 }

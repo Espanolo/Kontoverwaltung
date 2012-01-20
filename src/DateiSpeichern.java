@@ -27,7 +27,7 @@ kundenListe, String pfad){
 			String data = kundenListe.get(i).getData();
 			for (int m=0; m < data.length(); m++){
 				  try {
-	
+
 					  schreibeStrom.write((byte)data.charAt(m));
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -66,7 +66,8 @@ kundenListe, String pfad){
 			String data = kontenListe.get(i).getData();
 			for (int m=0; m < data.length(); m++){
 				  try {
-	
+					  //Punkt durch Komma ersetzt, damit es spŠter beim Laden keine Probleme gibt
+					  data = data.replace(".", ",");
 					  schreibeStrom.write((byte)data.charAt(m));
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

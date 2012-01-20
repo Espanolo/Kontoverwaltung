@@ -4,8 +4,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.awt.Robot;
 
@@ -17,8 +15,6 @@ public class KontoverwaltungsFenster extends JFrame
 	public static ArrayList<Kunde> kundenListe= new ArrayList<Kunde>();
 	public static ArrayList<Konto> kontoListe= new ArrayList<Konto>();
 				
-		
-
    public KontoverwaltungsFenster()
    {
        super("Kontoverwaltung");
@@ -31,6 +27,10 @@ public class KontoverwaltungsFenster extends JFrame
        panel.setLayout(null);
        super.add(panel); 
        addWindowListener( new FensterSchlie§enAdapter() );
+       
+       //Daten aus den Datein lesen
+       kontoListe = DateiLaden.kontoListeLesen("kontoListe.txt");
+       kundenListe = DateiLaden.kundenListeLesen("kundenListe.txt");
   
        //Logo laden
      	JLabel lblLogo = new JLabel();
@@ -759,8 +759,8 @@ public class KontoverwaltungsFenster extends JFrame
 		//Textfelder erstellen
 		final JTextField txtKundennummer = new JTextField();
 	    final JTextField txtKontonummer = new JTextField();
-	    final JFormattedTextField txtKontostand = new JFormattedTextField(new DecimalFormat("0.##"));
-	    
+	    final JTextField txtKontostand = new JTextField();
+	    	    
 	    //Schriftart und Grš§e festlegen
 	    txtKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
 		txtKontonummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
@@ -859,6 +859,7 @@ public class KontoverwaltungsFenster extends JFrame
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
 						
+						
 						//Leere Eingabe abfragen
 						if (txtKundennummer.getText().equals(""))
 							JOptionPane.showMessageDialog(null, "Kundennummer eingeben!");
@@ -887,7 +888,7 @@ public class KontoverwaltungsFenster extends JFrame
 									kontoArt = "Sparkonto";
 								
 								try	{	
-									konto.neuesKonto(GlobaleVariable.kontoNummer, Integer.parseInt(txtKundennummer.getText()), kontoArt, ((Number)txtKontostand.getValue()).doubleValue() );
+									konto.neuesKonto(GlobaleVariable.kontoNummer, Integer.parseInt(txtKundennummer.getText()), kontoArt, Double.parseDouble(txtKontostand.getText().replace(",", ".")) );
 								} catch (NumberFormatException c) {
 									System.out.println(c.getMessage());
 								}
@@ -1122,7 +1123,7 @@ public class KontoverwaltungsFenster extends JFrame
 		//Textfelder erstellen
 		JTextField txtKundennummer = new JTextField();
 	    JTextField txtKontonummer = new JTextField();
-	    final JFormattedTextField txtKontostand = new JFormattedTextField(new DecimalFormat("0.##"));
+	    final JTextField txtKontostand = new JTextField();
 	    
 	    //Schriftart und Grš§e festlegen
 	    txtKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
@@ -1219,7 +1220,7 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(rdbtnGirokonto);
 		panel.add(rdbtnSparkonto);
 		
-		txtKontostand.setText(Double.toString(kto.getkontoStand()));
+		txtKontostand.setText(Double.toString(kto.getkontoStand()).replace(".", ","));
 		
 		//Nicht-Šnderbare TextFelder 
 		txtKontonummer.setEditable(false);
@@ -1237,7 +1238,7 @@ public class KontoverwaltungsFenster extends JFrame
 							kontoArt = "Sparkonto";
 						
 						//KontoBearbeiten Funktion aufrufen und neue Werte abspeichern
-						kto.kontoBearbeiten(kontoArt, ((Number)txtKontostand.getValue()).doubleValue());
+						kto.kontoBearbeiten(kontoArt, Double.parseDouble(txtKontostand.getText().replace(",", ".")));
 						
 						//Altes Panel wieder starten
 						alleKontenAnzeigenPanel(kto.getKundenNummer());
