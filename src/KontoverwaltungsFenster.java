@@ -26,7 +26,7 @@ public class KontoverwaltungsFenster extends JFrame
        panel = new JPanel();
        panel.setLayout(null);
        super.add(panel); 
-       addWindowListener( new FensterSchlie§enAdapter() );
+       //addWindowListener( new FensterSchlie§enAdapter() );
        
        //Daten aus den Datein lesen
        kontoListe = DateiLaden.kontoListeLesen("kontoListe.txt");

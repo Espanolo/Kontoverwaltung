@@ -1,0 +1,34 @@
+Probleme :
+
+Kontostand  -   Komma getrennte Werte konnten nicht aus dem JTextFeld nach Double geparst werden. Nur wenn anstatt dem Komma, ein Punkt genutzt wurde.
+
+Lösung Um auch direkt eine Formation vorzunehmen und alles nach der 2. Stelle nach dem Komma abzutrennen, wurde JFormattedTextField genutzt. Dort konnte die Formation angewendet werden, sowie die Behandlung des Kommasd
+
+
+Im Programm wird der Kontostand mit . anstatt , angezeigt, weil double . benutzt
+
+Lösung: mit der replace Funktion wird der . durch Komma ersetzt, wenn der Kontostand angezeigt werden soll
+
+
+Beim Laden der Kontosätze, wird eine Exception ausgelöst, weil die Kontostände mit . gespeichert werden. Offensichtlich kann Scanner.nextDouble() nur mit Komma Zahlen umgehen
+
+Lösung: Beim speichern werden alle Punkte durch Kommas ersetzt
+
+
+
+Beim anzeigen einer JList werden die Datensätze beim Initialisieren aus der Arraylist via toString übergeben. Für die reine Anzeige der Datensätze ausreichend. Will man die Datensätze aus der JList ändern, hat man ein Problem, weil man nicht auf die Datensätze zugreifen kann.
+
+Lösung: Um Daten in der JList zu halten, wird ein DefaultListModel genutzt. Dem werden dann die Datensätze, wenn sie geladen werden einzeln übergeben.
+
+
+
+In einem Label Umbrüche anzeigen
+
+Lösung: HTML Code <p> nutzen
+
+
+Alle Datensätze sollen beim Schließen des Fensters über X  oder über Datei->Schließen, gespeichert werden
+
+Lösung: Ein WindowListener wurde hinzugefügt, der beim schließen über X die Funktion windowclosing, der neuen Klasse FensterSchließenAdapter aufruft. Dort werden dann die Funktionen für die Datenspeicherung aufgerufen.
+Für den Exil Button wurde ein ActionListener hinzugefügt, der ein Objekt von FensterSchließenAdapter erstellt und dann die windowClosing Funktion aufruft.
+
