@@ -7,7 +7,6 @@ import java.awt.event.WindowEvent;
      public void windowClosing( WindowEvent e ) { 
     	 DateiSpeichern.kontenListeSpeichern(KontoverwaltungsFenster.kontoListe, "kontoListe.txt");
     	 DateiSpeichern.kundenListeSpeichern(KontoverwaltungsFenster.kundenListe, "kundenListe.txt");
-    	 System.out.print("test");
     	 System.exit(0);
      }
    }

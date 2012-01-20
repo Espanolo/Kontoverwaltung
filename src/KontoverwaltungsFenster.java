@@ -50,6 +50,7 @@ public class KontoverwaltungsFenster extends JFrame
 		fileMenu.add(close);
 		
 		//Actionlistener fürs beenden 
+		
 		close.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -72,7 +73,7 @@ public class KontoverwaltungsFenster extends JFrame
 		customerMenu.add(deleteCustomer);
 		JMenuItem allAccounts = new JMenuItem("Kundenkonto anzeigen/bearbeiten/loeschen");
 		customerMenu.add(allAccounts);
-		
+	
 		
 		//ActionListner für die Kunden Items hinzufügen
 		newCustomer.addActionListener(
