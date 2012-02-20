@@ -1088,13 +1088,20 @@ public class KontoverwaltungsFenster extends JFrame
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e) {
 						if (!list.isSelectionEmpty()) {
-							int i = list.getSelectedIndex();
-						    kontoListe.remove(hilfsKontoListe.get(i));
-							//hilfsKontoListe.remove(i);
-							alleKontenAnzeigenPanel(Integer.parseInt(txtKundennummer.getText()));
-
+							
+							int ok = JOptionPane.showConfirmDialog(null, "Wollen Sie dieses Konto lšschen?", "ACHTUNG", JOptionPane.YES_NO_OPTION);
+							
+							if (ok == JOptionPane.YES_OPTION) {
+								int i = list.getSelectedIndex();
+							    kontoListe.remove(hilfsKontoListe.get(i));
+								//hilfsKontoListe.remove(i);
+								alleKontenAnzeigenPanel(Integer.parseInt(txtKundennummer.getText()));
+									
+								}
+							}
+							
 						}				
-					}
+					
 				}
 		);
    }
