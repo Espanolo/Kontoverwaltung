@@ -2,13 +2,14 @@
 	 * Konto Klasse
 	 * @author DMF
 	 */
+
 public class Konto{
 	private int kontoNummer, kundenNummer;
 	private String kontoArt;
 	private double kontoStand;
 	
 	/**
-	 * TODO: Neues Konto anlegen
+	 * Neues Konto anlegen
 	 * @author DMF
 	 */
 	public void neuesKonto(int kontoNummer, int kundenNummer, String kontoArt, double kontoStand){ 

@@ -1,5 +1,12 @@
-import javax.swing.*;
+/**
+	 * Java Projekt WS11
+	 * Kontoverwaltungsprogramm
+	 * 
+	 * 
+	 * @author Dennis Morales Flores, Markus Mayer, Marko Rubin
+	 */
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,8 +29,10 @@ public class KontoverwaltungsFenster extends JFrame
        setResizable(false);
 
        panel = new JPanel();
+       //Layout setzen
        panel.setLayout(null);
        super.add(panel); 
+       //WindowListener hinzufuegen
        addWindowListener( new FensterSchließenAdapter() );
        
        //Daten aus den Datein lesen
@@ -36,8 +45,9 @@ public class KontoverwaltungsFenster extends JFrame
    		lblLogo.setBounds(300-107,250-75, 215, 75);
    		panel.add(lblLogo);
        
-   		//Datei Item
+   		//Menü initialisieren
 		JMenuBar menuBar = new JMenuBar();
+		//Datei Item
 		JMenu fileMenu = new JMenu("Datei");
 		menuBar.add(fileMenu);
 		setJMenuBar(menuBar);
@@ -67,7 +77,7 @@ public class KontoverwaltungsFenster extends JFrame
 		customerMenu.add(allCustomers);
 		JMenuItem editCustomer = new JMenuItem("Kunde bearbeiten");
 		customerMenu.add(editCustomer);
-		JMenuItem deleteCustomer = new JMenuItem("Kunde löschen");
+		JMenuItem deleteCustomer = new JMenuItem("Kunde loeschen");
 		customerMenu.add(deleteCustomer);
 		JMenuItem allAccounts = new JMenuItem("Kundenkonto anzeigen/bearbeiten/loeschen");
 		customerMenu.add(allAccounts);
@@ -540,7 +550,7 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(lblLogo);
 		
 		//Info Label erstellen
-		JLabel lblKundenLoeschen = new JLabel("Kunden löschen");
+		JLabel lblKundenLoeschen = new JLabel("Kunden loeschen");
 		lblKundenLoeschen.setFont(new Font("KufiStandardGK", Font.BOLD, 20));
 		lblKundenLoeschen.setBounds(340, 75, 200, 16);
 		panel.add(lblKundenLoeschen);
@@ -584,7 +594,7 @@ public class KontoverwaltungsFenster extends JFrame
 		JLabel lblStrasse = new JLabel("Strasse");
 		JLabel lblPLZ = new JLabel("PLZ");
 		JLabel lblOrt = new JLabel("Ort");
-		JLabel lblZugehoerigeKonten = new JLabel("zugehörige Konten:");
+		JLabel lblZugehoerigeKonten = new JLabel("zugehoerige Konten:");
 		
 		//Schriftart und Größe festlegen
 		lblKundennummer.setFont(new Font("KufiStandardGK", Font.PLAIN, 12));
@@ -640,7 +650,7 @@ public class KontoverwaltungsFenster extends JFrame
 		panel.add(sepUnten);
 		
 		//Kundenanlegen Button erstellen
-		final JButton btnKundeLoeschen = new JButton("löschen");
+		final JButton btnKundeLoeschen = new JButton("loeschen");
 		btnKundeLoeschen.setBounds(230, 400, 135, 30);
 		panel.add(btnKundeLoeschen);
 		btnKundeLoeschen.setVisible(false);
@@ -679,7 +689,7 @@ public class KontoverwaltungsFenster extends JFrame
 						data.removeAllElements();
 						
 						//Sicherheitsabfrage ob der Kunde, samt Konten wirklich gelöscht werden soll
-						int ok = JOptionPane.showConfirmDialog(null, "Wollen Sie diesen Kunden samt seinen Konten wirklich löschen?", "ACHTUNG", JOptionPane.YES_NO_OPTION);
+						int ok = JOptionPane.showConfirmDialog(null, "Wollen Sie diesen Kunden samt seinen Konten wirklich loeschen?", "ACHTUNG", JOptionPane.YES_NO_OPTION);
 						
 						if (ok == JOptionPane.YES_OPTION) {
 							for (int i = 0; i < kundenListe.size(); i++) {	
@@ -1079,7 +1089,7 @@ public class KontoverwaltungsFenster extends JFrame
 					public void actionPerformed(ActionEvent e) {
 						if (!list.isSelectionEmpty()) {
 							
-							int ok = JOptionPane.showConfirmDialog(null, "Wollen Sie dieses Konto löschen?", "ACHTUNG", JOptionPane.YES_NO_OPTION);
+							int ok = JOptionPane.showConfirmDialog(null, "Wollen Sie dieses Konto loeschen?", "ACHTUNG", JOptionPane.YES_NO_OPTION);
 							
 							if (ok == JOptionPane.YES_OPTION) {
 								int i = list.getSelectedIndex();

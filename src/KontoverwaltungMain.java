@@ -1,23 +1,14 @@
-
-
-	/**
+/**
 	 * Java Projekt WS11
 	 * Kontoverwaltungsprogramm
 	 * 
 	 * 
-	 * @author Dennis Morales Flores
+	 * @author Dennis Morales Flores, Markus Mayer, Marko Rubin
 	 */
 
 
 public class KontoverwaltungMain {
-	
-	 
-	/**
-	 * 
-	 * Hauptprogramm
-	 * 
-	 * @author DMF
-	 */
+
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		

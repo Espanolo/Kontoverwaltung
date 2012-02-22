@@ -1,15 +1,14 @@
-
 /**
- * Kunden Klasse
- * @author DMF
- */
+	 * Kunden Klasse
+	 * @author DMF
+	 */
 
 public class Kunde {
 	private int kundenNummer, postleitzahl;
 	private String vorname, nachname, strasse, ort;
 	
 	/**
-	 * TODO: Kunde anlegen
+	 * Kunde anlegen
 	 * @author DMF
 	 */
 	public void kundeAnlegen(int kundenNummer, String vorname, String nachname, String strasse, int postleitzahl, String ort){
@@ -44,7 +43,7 @@ public class Kunde {
 		return ort;
 	}
 	/**
-	 * TODO: Kunde bearbeiten
+	 * Kunde bearbeiten
 	 * @author DMF
 	 */
 	public void kundeBearbeiten(String vorname, String nachname, String strasse, int postleitzahl, String ort){

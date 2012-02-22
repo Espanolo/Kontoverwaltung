@@ -1,4 +1,10 @@
-
+/**
+	 * Java Projekt WS11
+	 * Kontoverwaltungsprogramm
+	 * 
+	 * 
+	 * @author Dennis Morales Flores, Markus Mayer, Marko Rubin
+	 */
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;

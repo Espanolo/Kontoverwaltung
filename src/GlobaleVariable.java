@@ -1,3 +1,10 @@
+/**
+	 * Java Projekt WS11
+	 * Kontoverwaltungsprogramm
+	 * 
+	 * 
+	 * @author Dennis Morales Flores, Markus Mayer, Marko Rubin
+	 */
 
 public class GlobaleVariable {
 
